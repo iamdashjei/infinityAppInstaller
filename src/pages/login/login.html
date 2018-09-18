@@ -6,24 +6,47 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Login</ion-title>
-  </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <div id="recaptcha-container"></div>
+<ion-content class="login-content" padding>
+  <ion-row class="logo-row">
+    <ion-col></ion-col>
+    <ion-col width-80>
+        <img src="assets/imgs/infinity512.png"/>
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
 
-  <ion-item>
+<div class="login-box">
+<!-- <div id="recaptcha-container"></div> -->
+      <ion-row>
+        <ion-col>
 
-  <ion-label stacked>Phone Number</ion-label>
-  <ion-input type="number" [(ngModel)]="phoneNUmber"></ion-input>
+          <ion-list center>
 
-  </ion-item>
+            <ion-item *ngIf="isPhoneNumberSubmit()">
+              <ion-label stacked> Mobile Number </ion-label>
+              <ion-input type="number" [(ngModel)]="phoneNumber"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="isCodeVerified()">
+              <ion-label stacked> Enter Verification Code </ion-label>
+              <ion-input type="number" placeholder="Enter OTP" [(ngModel)]="code"></ion-input>
+            </ion-item>
 
-  <button ion-button id="sign-in-button" (click)="signIn(phoneNumber)">
-    Sign In
-  </button>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col class="signup-col" >
+            <button ion-button block (click)="PhoneVerification()" *ngIf="isCodeVerified()"> Verify This phone number </button>
+            <button ion-button block (click)="send(phoneNumber)" *ngIf="isPhoneNumberSubmit()"> Sign In </button>
+
+        </ion-col>
+    </ion-row>
+    </div>
+
+
 </ion-content>

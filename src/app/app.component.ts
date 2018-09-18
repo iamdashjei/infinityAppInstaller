@@ -8,7 +8,8 @@ import { HomePage } from '../pages/home/home';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any;
+  rootPage: any = 'LoginPage';
+  token: any;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     const firebaseConfig = {
@@ -20,15 +21,26 @@ export class MyApp {
       messagingSenderId: "918580267251"
     };
     firebase.initializeApp(firebaseConfig);
-    const unsubscribe = firebase.auth().onAuthStateChanged( user => {
-    if (user){
-    this.rootPage = HomePage;
-    unsubscribe();
-    } else {
-    this.rootPage = 'LoginPage';
-    unsubscribe();
-    }
-    });
+
+    // FCMPlugin.getToken(
+    //   (token) => {
+    //     console.log("Device Token: " + token);
+    //     this.token = token;
+    // });
+
+    // FCMPlugin.onNotification(function(data){
+    // if(data.wasTapped){
+    //   //this.isLoggedIn();
+    //   //Notification was received on device tray and tapped by the user.
+    // //  navCtrl.setRoot(DashboardPage);
+    // }else{
+    //   //Notification was received in foreground. Maybe the user needs to be notified.
+    //
+    //   //alert("You have new leads");
+    //   //location.reload();
+    //   //this.isLoggedIn();
+    //   }
+    // });
 
 
     platform.ready().then(() => {
