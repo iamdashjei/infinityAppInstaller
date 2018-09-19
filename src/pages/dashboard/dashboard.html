@@ -6,13 +6,99 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>dashboard</ion-title>
-  </ion-navbar>
+  <ion-navbar color="secondary">
+
+     <ion-buttons left>
+       <button ion-button icon-only menuToggle="left">
+         <ion-icon name="menu"></ion-icon>
+       </button>
+     </ion-buttons>
+
+     <ion-title>Dashboard</ion-title>
+
+     <ion-buttons end>
+       <button id="notification-button" ion-button clear>
+     <ion-icon name="notifications">
+       <ion-badge id="notifications-badge" color="danger">5</ion-badge>
+     </ion-icon>
+      </button>
+     </ion-buttons>
+
+   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <!-- Leads Completed -->
+<ion-list padding-bottom>
+  <ion-list-header class="sectionCompleted">
+    <ion-icon name="checkmark-circle-outline" start></ion-icon>
+    &nbsp; Completed
+  </ion-list-header>
+  <ion-item *ngFor="let l of leadsCompleted">
+      <ion-item>
+      <ion-thumbnail item-left>
+       <img src="assets/imgs/orange-send-file-64.png">
+     </ion-thumbnail>
+
+     <h5>{{l.c_campaign_name}}</h5>
+     <p clear item-right>{{ l.created_at | timeAgo }}</p>
+   </ion-item>
+
+  </ion-item>
+
+  <!-- <ion-item *ngIf="isleadsCompletedHaveValue()">
+    No Leads Completed.
+  </ion-item> -->
+
+</ion-list>
+
+<!-- In progress -->
+ <ion-list padding-bottom>
+   <ion-list-header class="sectionInProgress">
+     <ion-icon name="book" start></ion-icon>
+     &nbsp; In Progress
+
+   </ion-list-header>
+   <ion-item *ngFor="let l of leadsInProgress">
+        <ion-item (click)="openLeads(l.lead_slug, l.c_campaign_name, l, l.created_at, l.name_of_customer)">
+       <ion-thumbnail item-left>
+        <img src="assets/imgs/orange-send-file-64.png">
+      </ion-thumbnail>
+
+      <h5>{{l.c_campaign_name}}</h5>
+      <p clear item-right>{{ l.created_at | timeAgo }}</p>
+
+        </ion-item>
+    </ion-item>
+      <!-- <progress-bar [progress]="loadProgress()"></progress-bar> -->
+
+ </ion-list>
+
+
+ <!-- Added Leads -->
+  <ion-list padding-bottom>
+    <ion-list-header class="sectionAdded">
+      <ion-icon name="clipboard" start></ion-icon>
+      &nbsp; Added Leads
+    </ion-list-header>
+
+        <ion-item *ngFor="let l of leadsNew">
+          <ion-item>
+        <ion-thumbnail item-left>
+         <img src="assets/imgs/orange-send-file-64.png">
+       </ion-thumbnail>
+
+       <h4>{{l.c_campaign_name}}</h4>
+       <p clear item-right>{{ l.created_at | timeAgo }}</p>
+       <button ion-button (click)="updateLeads(l.lead_slug, 'Accept')"> Accept </button>
+       <button ion-button (click)="updateLeads(l.lead_slug, 'Decline')"> Decline </button>
+         </ion-item>
+      </ion-item>
+
+
+
+  </ion-list>
 
 </ion-content>

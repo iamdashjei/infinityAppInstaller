@@ -38,11 +38,11 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    // FCMPlugin.getToken(
-    //   (token) => {
-    //     console.log("Device Token: " + token);
-    //     this.token = token;
-    // });
+    FCMPlugin.getToken(
+      (token) => {
+        console.log("Device Token: " + token);
+        this.token = token;
+    });
   }
 
   signIn(phoneNumber: number){
@@ -64,7 +64,7 @@ export class LoginPage {
 
     firebase.auth().signInWithCredential(signInCredential).then((info) => {
       console.log(info);
-      this.storage.set("otp_code", this.code);
+      this.storage.set("installer_otp_code", this.code);
       this.storage.set("InstallerPhone", this.phoneNumber);
       this.rest.fetchUserByPhoneNumber(this.phoneNumber, this.token).then((result) => {
               console.log(result);

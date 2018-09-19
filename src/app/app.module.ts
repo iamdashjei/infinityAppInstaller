@@ -18,6 +18,9 @@ import { SignaturePadModule } from 'angular2-signaturepad';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { DashboardPage } from '../pages/dashboard/dashboard';
+import { InstallerPage } from '../pages/installer/installer';
+import { EshComponent } from '../components/esh/esh';
+import { EshImageUploadComponent } from '../components/esh-image-upload/esh-image-upload';
 
 import { TimeAgoPipe } from 'time-ago-pipe';
 
@@ -30,7 +33,10 @@ import { SharedobjectserviceProvider } from '../providers/sharedobjectservice/sh
     MyApp,
     HomePage,
     DashboardPage,
+    InstallerPage,
     TimeAgoPipe,
+    EshComponent,
+    EshImageUploadComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +53,8 @@ import { SharedobjectserviceProvider } from '../providers/sharedobjectservice/sh
   entryComponents: [
     MyApp,
     HomePage,
-    DashboardPage
+    DashboardPage,
+    InstallerPage
   ],
   providers: [
     StatusBar,

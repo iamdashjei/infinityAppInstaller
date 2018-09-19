@@ -105,10 +105,11 @@ export class RestProvider {
 
 
   fetchLeadAssigned(id){
-    let data = JSON.stringify({ otp_user_id: id });
+
+    let data = JSON.stringify({ otp_user_id: this.sharedObject.getSharedUserId() });
 
     return new Promise((resolve, reject) => {
-      this.http.post('https://app.infinityenergyorganisation.co.uk/v1/app/api/get-userByLead', data, this.options)
+      this.http.post('https://app.infinityenergyorganisation.co.uk/v1/app/api/get-userByLeadInstaller', data, this.options)
       .toPromise()
       .then((response) =>
       {
@@ -138,11 +139,11 @@ export class RestProvider {
         let obj = response.json();
         let id = obj['id'];
 
-        this.setKey("user_id", id[0].id);
-        this.setKey("user_name", id[0].name);
-        this.storage.set("email", id[0].email);
-        this.storage.set("position", id[0].position);
-        this.storage.set("address", id[0].address);
+        this.setKey("installer_id", id[0].id);
+        this.setKey("installer_user_name", id[0].name);
+        this.storage.set("installer_email", id[0].email);
+        this.storage.set("installer_position", id[0].position);
+        this.storage.set("installer_address", id[0].address);
 
         this.sharedObject.setSharedUserId(id[0].id);
           this.loadingLogIn.dismiss();
