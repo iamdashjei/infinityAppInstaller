@@ -27,6 +27,9 @@ import { BoilerComponent } from '../components/boiler/boiler';
 import { BoilerImageUploadComponent } from '../components/boiler-image-upload/boiler-image-upload';
 import { CavityWallComponent } from '../components/cavity-wall/cavity-wall';
 import { CavityWallImageUploadComponent } from '../components/cavity-wall-image-upload/cavity-wall-image-upload';
+import { SolidWallComponent } from '../components/solid-wall/solid-wall';
+import { SolidWallImageUploadComponent } from '../components/solid-wall-image-upload/solid-wall-image-upload';
+import { EDeclarationSignComponent } from '../components/e-declaration-sign/e-declaration-sign';
 
 import { TimeAgoPipe } from 'time-ago-pipe';
 
@@ -49,6 +52,9 @@ import { SharedobjectserviceProvider } from '../providers/sharedobjectservice/sh
     BoilerImageUploadComponent,
     CavityWallComponent,
     CavityWallImageUploadComponent,
+    SolidWallComponent,
+    SolidWallImageUploadComponent,
+    EDeclarationSignComponent,
 
   ],
   imports: [

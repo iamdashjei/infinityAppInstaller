@@ -12,25 +12,130 @@
   </ion-card-header>
 
   <ion-card-content #eshImageForms>
-    <ion-item>
-      <ion-label color="primary" stacked>PPES Electrical Cert</ion-label>
-      <ion-input type="file" multiple></ion-input>
-    </ion-item>
+    <ion-grid>
+      <ion-row>
+             <ion-col>
+               <div class="progress" style="width:300px">
+                 <div class="progress-bar progress-bar-info progress-bar-striped"
+                   role="progressbar" attr.aria-valuenow="{{progressPPES.percentage}}"
+                     aria-valuemin="0" aria-valuemax="100"
+                     [ngStyle]="{width:progressPPES.percentage+'%'}">
+                     {{progressPPES.percentage}}%
+                   </div>
+               </div>
+             </ion-col>
+             <ion-col>
+              <ion-label color="{{ colorPPES }}">{{ progressPPESStatus }}</ion-label>
+             </ion-col>
+             <ion-col>
+               <ion-label color="primary">PPES Electrical Cert</ion-label>
+               <img [src]="base64ImageUBIL" width="80" height="80" *ngIf="base64ImagePPES"/>
+             </ion-col>
 
-    <ion-item>
-      <ion-label color="primary" stacked>PIBI</ion-label>
-      <ion-input type="file" multiple></ion-input>
-    </ion-item>
+             <ion-col>
 
-    <ion-item>
-      <ion-label color="primary" stacked>PICP</ion-label>
-      <ion-input type="file" multiple></ion-input>
-    </ion-item>
+               <button ion-button (click)="openGallery('PPES')"> Choose File </button>
+               <button ion-button (click)="uploadImage('PPES')" *ngIf="base64ImagePPES"> Upload Image </button>
+               <!-- <ion-label color="primary"> <input type="file" (change)="selectFileSurveyor($event)"/></ion-label>
 
-    <ion-item>
-      <ion-label color="primary" stacked>PICA</ion-label>
-      <ion-input type="file" multiple></ion-input>
-    </ion-item>
+               <button ion-button class="primary" [disabled]="!selectedFiles" (click)="uploadSurveyor()">Upload</button> -->
+
+             </ion-col>
+           </ion-row>
+
+
+           <ion-row>
+                  <ion-col>
+                    <div class="progress" style="width:300px">
+                      <div class="progress-bar progress-bar-info progress-bar-striped"
+                        role="progressbar" attr.aria-valuenow="{{progressPIBI.percentage}}"
+                          aria-valuemin="0" aria-valuemax="100"
+                          [ngStyle]="{width:progressPIBI.percentage+'%'}">
+                          {{progressPIBI.percentage}}%
+                        </div>
+                    </div>
+                  </ion-col>
+                  <ion-col>
+                   <ion-label color="{{ colorPIBI }}">{{ progressPIBIStatus }}</ion-label>
+                  </ion-col>
+                  <ion-col>
+                    <ion-label color="primary">PIBI</ion-label>
+                    <img [src]="base64ImagePIBI" width="80" height="80" *ngIf="base64ImagePIBI"/>
+                  </ion-col>
+
+                  <ion-col>
+
+                    <button ion-button (click)="openGallery('PIBI')"> Choose File </button>
+                    <button ion-button (click)="uploadImage('PIBI')" *ngIf="base64ImagePIBI"> Upload Image </button>
+                    <!-- <ion-label color="primary"> <input type="file" (change)="selectFileSurveyor($event)"/></ion-label>
+
+                    <button ion-button class="primary" [disabled]="!selectedFiles" (click)="uploadSurveyor()">Upload</button> -->
+
+                  </ion-col>
+          </ion-row>
+
+          <ion-row>
+                 <ion-col>
+                   <div class="progress" style="width:300px">
+                     <div class="progress-bar progress-bar-info progress-bar-striped"
+                       role="progressbar" attr.aria-valuenow="{{progressPICP.percentage}}"
+                         aria-valuemin="0" aria-valuemax="100"
+                         [ngStyle]="{width:progressPICP.percentage+'%'}">
+                         {{progressPICP.percentage}}%
+                       </div>
+                   </div>
+                 </ion-col>
+                 <ion-col>
+                  <ion-label color="{{ colorPICP }}">{{ progressPICPStatus }}</ion-label>
+                 </ion-col>
+                 <ion-col>
+                   <ion-label color="primary">PICP</ion-label>
+                   <img [src]="base64ImagePICP" width="80" height="80" *ngIf="base64ImagePICP"/>
+                 </ion-col>
+
+                 <ion-col>
+
+                   <button ion-button (click)="openGallery('PICP')"> Choose File </button>
+                   <button ion-button (click)="uploadImage('PICP')" *ngIf="base64ImagePICP"> Upload Image </button>
+                   <!-- <ion-label color="primary"> <input type="file" (change)="selectFileSurveyor($event)"/></ion-label>
+
+                   <button ion-button class="primary" [disabled]="!selectedFiles" (click)="uploadSurveyor()">Upload</button> -->
+
+                 </ion-col>
+         </ion-row>
+
+         <ion-row>
+                <ion-col>
+                  <div class="progress" style="width:300px">
+                    <div class="progress-bar progress-bar-info progress-bar-striped"
+                      role="progressbar" attr.aria-valuenow="{{progressPICA.percentage}}"
+                        aria-valuemin="0" aria-valuemax="100"
+                        [ngStyle]="{width:progressPICA.percentage+'%'}">
+                        {{progressPICA.percentage}}%
+                      </div>
+                  </div>
+                </ion-col>
+                <ion-col>
+                 <ion-label color="{{ colorPICA }}">{{ progressPICAStatus }}</ion-label>
+                </ion-col>
+                <ion-col>
+                  <ion-label color="primary">PICA</ion-label>
+                  <img [src]="base64ImagePICA" width="80" height="80" *ngIf="base64ImagePICA"/>
+                </ion-col>
+
+                <ion-col>
+
+                  <button ion-button (click)="openGallery('PICA')"> Choose File </button>
+                  <button ion-button (click)="uploadImage('PICA')" *ngIf="base64ImagePICA"> Upload Image </button>
+                  <!-- <ion-label color="primary"> <input type="file" (change)="selectFileSurveyor($event)"/></ion-label>
+
+                  <button ion-button class="primary" [disabled]="!selectedFiles" (click)="uploadSurveyor()">Upload</button> -->
+
+                </ion-col>
+        </ion-row>
+
+   </ion-grid>
+
 
     <!-- PUT SIGNATURE PAGE HERE-->
 

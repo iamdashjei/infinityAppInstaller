@@ -1,5 +1,6 @@
 import { Component, ViewChild, Renderer, Input} from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice/sharedobjectservice';
 
 /**
@@ -20,9 +21,30 @@ export class EshImageUploadComponent {
 
   icon: string = "arrow-forward";
 
+  progressPPES: {percentage: number} = {percentage: 0};
+  progressPPESStatus: string = "Not yet completed";
+  colorPPES: string = "danger";
+
+  progressPICP: {percentage: number} = {percentage: 0};
+  progressPICPStatus: string = "Not yet completed";
+  colorPICP: string = "danger";
+
+  progressPIBI: {percentage: number} = {percentage: 0};
+  progressPIBIStatus: string = "Not yet completed";
+  colorPIBI: string = "danger";
+
+  progressPICA: {percentage: number} = {percentage: 0};
+  progressPICAStatus: string = "Not yet completed";
+  colorPICA: string = "danger";
+
+  base64ImagePPES: any;
+  base64ImagePIBI: any;
+  base64ImagePICP: any;
+  base64ImagePICA: any;
 
   constructor(public renderer: Renderer,
               public storage: Storage,
+              private camera: Camera,
               public sharedObject: SharedobjectserviceProvider) {
 
   }
@@ -48,6 +70,38 @@ export class EshImageUploadComponent {
     this.accordionExpanded = !this.accordionExpanded;
     this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
 
+  }
+
+
+  openGallery(tag) {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+    console.log("This tag: " + tag);
+
+
+    }, (err) => {
+      console.log(err);
+
+    });
+  }
+
+
+  uploadImage(tag){
+  console.log("Upload Image: " + tag)
+
+  }
+
+  progressUploads(tag){
+  for(var i = 0; i <= 100; i+=10){
+
+   }
   }
 
 

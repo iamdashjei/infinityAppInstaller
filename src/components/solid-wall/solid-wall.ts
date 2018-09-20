@@ -24,7 +24,6 @@ export class SolidWallComponent {
               public storage: Storage,
               public sharedObject: SharedobjectserviceProvider) {
     console.log('Hello SolidWallComponent Component');
-    this.text = 'Hello World';
   }
 
   ionViewDidLoad(){

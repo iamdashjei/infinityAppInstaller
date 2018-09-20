@@ -9,6 +9,7 @@ import { BoilerComponent } from './boiler/boiler';
 import { BoilerImageUploadComponent } from './boiler-image-upload/boiler-image-upload';
 import { LoftComponent } from './loft/loft';
 import { LoftImageUploadComponent } from './loft-image-upload/loft-image-upload';
+import { EDeclarationSignComponent } from './e-declaration-sign/e-declaration-sign';
 @NgModule({
 	declarations: [EshComponent,
     EshImageUploadComponent,
@@ -19,7 +20,8 @@ import { LoftImageUploadComponent } from './loft-image-upload/loft-image-upload'
     BoilerComponent,
     BoilerImageUploadComponent,
     LoftComponent,
-    LoftImageUploadComponent],
+    LoftImageUploadComponent,
+    EDeclarationSignComponent],
 	imports: [],
 	exports: [EshComponent,
     EshImageUploadComponent,
@@ -30,6 +32,7 @@ import { LoftImageUploadComponent } from './loft-image-upload/loft-image-upload'
     BoilerComponent,
     BoilerImageUploadComponent,
     LoftComponent,
-    LoftImageUploadComponent]
+    LoftImageUploadComponent,
+    EDeclarationSignComponent]
 })
 export class ComponentsModule {}
