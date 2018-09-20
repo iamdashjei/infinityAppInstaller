@@ -1,4 +1,207 @@
 <!-- Generated template for the BoilerComponent component -->
-<div>
-  {{text}}
-</div>
+<ion-card>
+  <ion-card-header (click)="toggleAccordionBoiler()">
+    <ion-list>
+      <ion-item color="primary">
+        <button ion-button clear small icon-only item-right>
+          <ion-icon color="light" [name]="icon"></ion-icon>
+        </button>
+        {{ title }}
+      </ion-item>
+    </ion-list>
+  </ion-card-header>
+
+  <ion-card-content #boilerForms>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Fuel of new Heating System</ion-label>
+      <ion-input clearInput type="text" [(ngModel)]="boilerFuelOfNewHeatSystem"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Is it qualifying?</ion-label>
+      <ion-checkbox [(ngModel)]="boilerQualifying"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Will it heat 100% properly? </ion-label>
+      <ion-checkbox [(ngModel)]="boilerHeatProperly"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Date of Boiler Assessment</ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="boilerDateOfAssessment"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Existing Boiler Brand and Model</ion-label>
+      <ion-input clearInput type="text" [(ngModel)]="boilerFuelBrandAndModel"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Model Qualifier (If Applicable)</ion-label>
+      <ion-input clearInput type="text" [(ngModel)]="boilerModelQualifier"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Fuel Type</ion-label>
+      <ion-input clearInput type="text" [(ngModel)]="boilerFuelType"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Year of original commissioning (if available)</ion-label>
+      <ion-input clearInput type="text" [(ngModel)]="boilerYearOfOrigCommission"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Is it a combination boiler?</ion-label>
+      <ion-checkbox [(ngModel)]="boilerCombinationBoiler"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary">Is there any other boiler in the property</ion-label>
+      <ion-checkbox [(ngModel)]="boilerOtherBoilerProp"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Boiler Location (pre installation)</ion-label>
+      <ion-input clearInput type="text" [(ngModel)]="boilerFuelType"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Serial Number</ion-label>
+      <ion-input clearInput type="text" [(ngModel)]="boilerSerialNumber"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Please list all steps you took to identify
+        the symptoms of broken broiler. This may include any tests or check carried out on
+         the boiler to identify the symptoms</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Corrosion or fouling of the boiler heat exchanger</ion-label>
+      <ion-input clearInput type="text" [(ngModel)]="boilerCorrosion"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>No boiler ingnition</ion-label>
+      <ion-input clearInput type="text" [(ngModel)]="boilerNoBoilerIgnition"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Any other mechanical or electrical fault (include details of type of fault)</ion-label>
+      <ion-input clearInput type="text" [(ngModel)]="boilerOtherMechOrElect"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Results of the fuel gas analyzer combination outside boiler manufacturer tolerance</ion-label>
+      <ion-input clearInput type="text" [(ngModel)]="boilerResultsFuelGas"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Results of the burner pressure checks outside boiler manufacturer tolerance</ion-label>
+      <ion-input clearInput type="text" [(ngModel)]="boilerResultOfTheBurner"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Boiler and system sludge</ion-label>
+      <ion-input clearInput type="text" [(ngModel)]="boilerAndSystemSludge"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Primary flow rate unsatisfactory or outside boiler manufacturer tolerance</ion-label>
+      <ion-input clearInput type="text" [(ngModel)]="boilerPrimaryFlow"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Primary flow temperature unsatisfactory or outside boiler manufacturer tolerance</ion-label>
+      <ion-input clearInput type="text" [(ngModel)]="boilerPrimaryFlowRateTemp"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>For combination boilers only: Unsatisfactory hot water flow rate or temperature which are outside manufacturer's tolerance</ion-label>
+      <ion-input clearInput type="text" [(ngModel)]="boilerForCombinationBoilers"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Boiler external corrosion</ion-label>
+      <ion-input clearInput type="text" [(ngModel)]="boilerExternalCorrosion"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Boiler installation is immediately Dangerous (ID) or At Risk (AR) (Gas Safe definition)</ion-label>
+      <ion-input clearInput type="text" [(ngModel)]="boilerImmediatelyDangerous"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Other Faults(provide a detailed description) write how you identified the failure and any associated symptoms or leave if not applicable</ion-label>
+      <ion-input clearInput type="text" [(ngModel)]="boilerOtherFaults"></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label color="primary">Is the boiler efficiency 86% or more when assessed against PCDB/SAP 2012?</ion-label>
+      <ion-checkbox [(ngModel)]="boilerEfficiency"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Actual Repair Cost</ion-label>
+      <ion-input clearInput type="number" [(ngModel)]="boilerActualRepairCost"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Actual Replace Cost</ion-label>
+      <ion-input clearInput type="number" [(ngModel)]="boilerActualReplaceCost"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>What is the condition of the existing boiler (when assessed against the expected condition of a boiler of that age)</ion-label>
+      <ion-select [(ngModel)]="boilerExistingBoiler">
+        <ion-option value="Poor">Poor</ion-option>
+        <ion-option value="Standard">Standard</ion-option>
+        <ion-option value="Good">Good</ion-option>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label color="primary" stacked>What is the condition of the existing boiler (when assessed against the expected condition of a boiler of that age)</ion-label>
+      <ion-select [(ngModel)]="boilerExistingBoiler">
+        <ion-option value="Poor">Poor</ion-option>
+        <ion-option value="Standard">Standard</ion-option>
+        <ion-option value="Good">Good</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>What is the condition of the existing boiler (when assessed against the expected condition of a boiler of that age)</ion-label>
+      <ion-select [(ngModel)]="boilerExistingBoiler">
+        <ion-option value="Poor">Poor</ion-option>
+        <ion-option value="Standard">Standard</ion-option>
+        <ion-option value="Good">Good</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>What is the maximum cost of the boiler repair as identified in the Economic Repair Cost Comparison Tables?</ion-label>
+      <ion-input clearInput type="number" [(ngModel)]="boilerRepairOrReplace"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Repair or Replace Boiler?</ion-label>
+      <ion-select [(ngModel)]="boilerRepairOrReplace">
+        <ion-option value="Repair">Repair</ion-option>
+        <ion-option value="Replace">Replace</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Cost Score</ion-label>
+      <ion-input clearInput type="number" [(ngModel)]="boilerCostScore"></ion-input>
+    </ion-item>
+
+    <!-- PUT SIGNATURE PAGE HERE-->
+
+  </ion-card-content>
+</ion-card>

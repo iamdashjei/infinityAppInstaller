@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, Renderer, Input} from '@angular/core';
+import { Storage } from '@ionic/storage';
+import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice/sharedobjectservice';
 
 /**
  * Generated class for the SolidWallComponent component.
@@ -11,12 +13,38 @@ import { Component } from '@angular/core';
   templateUrl: 'solid-wall.html'
 })
 export class SolidWallComponent {
+  accordionExpanded = false;
 
-  text: string;
+  @ViewChild("solidwallForms") solidwallFormContent: any;
+  @Input('title') title: string;
 
-  constructor() {
+  icon: string = "arrow-forward";
+
+  constructor(public renderer: Renderer,
+              public storage: Storage,
+              public sharedObject: SharedobjectserviceProvider) {
     console.log('Hello SolidWallComponent Component');
     this.text = 'Hello World';
   }
 
+  ionViewDidLoad(){
+    console.log(this.solidwallFormContent.nativeElement);
+    this.renderer.setElementStyle(this.solidwallFormContent.nativeElement, "webkitTransition", "max-height 1200ms, padding 500ms");
+
+  }
+
+  // Toggle Form For ESH
+  toggleAccordionSolidWall() {
+    if(this.accordionExpanded){
+      this.renderer.setElementStyle(this.solidwallFormContent.nativeElement, "max-height", "0px");
+      this.renderer.setElementStyle(this.solidwallFormContent.nativeElement, "padding", "0px 16px");
+    } else {
+      this.renderer.setElementStyle(this.solidwallFormContent.nativeElement, "max-height", "1200px");
+      this.renderer.setElementStyle(this.solidwallFormContent.nativeElement, "padding", "13px 16px");
+    }
+
+    this.accordionExpanded = !this.accordionExpanded;
+    this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
+
+  }
 }

@@ -21,6 +21,12 @@ import { DashboardPage } from '../pages/dashboard/dashboard';
 import { InstallerPage } from '../pages/installer/installer';
 import { EshComponent } from '../components/esh/esh';
 import { EshImageUploadComponent } from '../components/esh-image-upload/esh-image-upload';
+import { LoftComponent } from '../components/loft/loft';
+import { LoftImageUploadComponent } from '../components/loft-image-upload/loft-image-upload';
+import { BoilerComponent } from '../components/boiler/boiler';
+import { BoilerImageUploadComponent } from '../components/boiler-image-upload/boiler-image-upload';
+import { CavityWallComponent } from '../components/cavity-wall/cavity-wall';
+import { CavityWallImageUploadComponent } from '../components/cavity-wall-image-upload/cavity-wall-image-upload';
 
 import { TimeAgoPipe } from 'time-ago-pipe';
 
@@ -37,6 +43,13 @@ import { SharedobjectserviceProvider } from '../providers/sharedobjectservice/sh
     TimeAgoPipe,
     EshComponent,
     EshImageUploadComponent,
+    LoftComponent,
+    LoftImageUploadComponent,
+    BoilerComponent,
+    BoilerImageUploadComponent,
+    CavityWallComponent,
+    CavityWallImageUploadComponent,
+
   ],
   imports: [
     BrowserModule,
