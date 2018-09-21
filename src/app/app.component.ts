@@ -33,8 +33,9 @@ export class MyApp {
       storageBucket: "infinityapp-fe5c6.appspot.com",
       messagingSenderId: "918580267251"
     };
-    firebase.initializeApp(firebaseConfig);
     this.isLoggedIn();
+    firebase.initializeApp(firebaseConfig);
+
     FCMPlugin.getToken(
       (token) => {
         console.log("Device Token: " + token);
@@ -51,7 +52,7 @@ export class MyApp {
 
       alert("You have new leads");
       location.reload();
-      //this.isLoggedIn();
+      this.isLoggedIn();
       }
     });
 
