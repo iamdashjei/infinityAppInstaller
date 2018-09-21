@@ -33,6 +33,100 @@
     <ion-label>(Applicable only for those premises build from 1 April 2017 and to be signed by the landlord or non-resident owner) I confirm that the premises were occupied before the date of completed installation.</ion-label>
     <ion-checkbox [(ngModel)]="applicableEsign"></ion-checkbox>
     </ion-item>
+
+    <div><img [src]="signatureImage" *ngIf="signatureImage" /></div>
+    <button ion-button block (click)="openSignatureModel('declare1')">Add Signature</button>
+
+    <!-- PUT SIGNATURE PAGE HERE-->
+
+  </ion-card-content>
+</ion-card>
+
+
+<ion-card>
+  <ion-card-header (click)="toggleAccordionDeclaration2()">
+    <ion-list>
+      <ion-item color="primary">
+        <button ion-button clear small icon-only item-right>
+          <ion-icon color="light" [name]="icon2"></ion-icon>
+        </button>
+        Declaration II
+      </ion-item>
+    </ion-list>
+  </ion-card-header>
+
+  <ion-card-content #dec2Forms>
+
+    <ion-item>
+    <ion-label>When the installation is complete. you should have any settings, controls etc. explained to you in a jargon free manner.</ion-label>
+    </ion-item>
+
+    <ion-item>
+    <ion-label>We should also have met any particular requirements and expectations that we were made aware of.</ion-label>
+    </ion-item>
+
+    <ion-item>
+    <ion-label>If you are in agreement that the job is complete and we have met your requirements we would ask that you to sign below to confirm this. </ion-label>
+    </ion-item>
+
+    <ion-item>
+    <ion-label>The signing of this form will not limit your statutory rights nor will it affect any guarantees or warranties.</ion-label>
+    </ion-item>
+
+    <ion-item>
+    <ion-label>If you have any feedback on the installation process or any area of your contact with us, please use the comments</ion-label>
+    <ion-label>section below:</ion-label>
+    </ion-item>
+
+    <ion-item>
+    <ion-label stacked>Customer Comments:</ion-label>
+    <ion-textarea clearInput type="text" [(ngModel)]="dec2CustComments"></ion-textarea>
+    </ion-item>
+        <div><img [src]="signatureImage2" *ngIf="signatureImage2" /></div>
+    <button ion-button block (click)="openSignatureModel('declare2')">Add Signature</button>
+
+    <!-- PUT SIGNATURE PAGE HERE-->
+
+  </ion-card-content>
+</ion-card>
+
+<ion-card>
+  <ion-card-header (click)="toggleAccordionDeclaration3()">
+    <ion-list>
+      <ion-item color="primary">
+        <button ion-button clear small icon-only item-right>
+          <ion-icon color="light" [name]="icon3"></ion-icon>
+        </button>
+        Declaration III
+      </ion-item>
+    </ion-list>
+  </ion-card-header>
+
+  <ion-card-content #dec3Forms>
+
+    <ion-item>
+    <ion-label>I, the occupier have been informed by you, the operative, that all the ESHs being repaired/replaced are under warranty for:</ion-label>
+    </ion-item>
+
+    <ion-list radio-group [(ngModel)]="dec3Warranty">
+    <ion-item>
+    <ion-label>A) 1 Year.</ion-label>
+    <ion-radio value="1 Year"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+    <ion-label>B) Replacement. </ion-label>
+    <ion-radio value="Replacement"></ion-radio>
+    </ion-item>
+    </ion-list>
+
+    <ion-item>
+    <ion-label>I will be provided with a copy of the warranty. I confirm that the nature of the warranty has been explained to me.</ion-label>
+    </ion-item>
+      <div><img [src]="signatureImage3" *ngIf="signatureImage3" /></div>
+    <button ion-button block (click)="openSignatureModel('declare3')">Add Signature</button>
+
+
     <!-- PUT SIGNATURE PAGE HERE-->
 
   </ion-card-content>

@@ -19,6 +19,8 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { InstallerPage } from '../pages/installer/installer';
+import { SignaturePage } from '../pages/signature/signature'
+
 import { EshComponent } from '../components/esh/esh';
 import { EshImageUploadComponent } from '../components/esh-image-upload/esh-image-upload';
 import { LoftComponent } from '../components/loft/loft';
@@ -55,7 +57,7 @@ import { SharedobjectserviceProvider } from '../providers/sharedobjectservice/sh
     SolidWallComponent,
     SolidWallImageUploadComponent,
     EDeclarationSignComponent,
-
+    SignaturePage
   ],
   imports: [
     BrowserModule,
@@ -73,7 +75,8 @@ import { SharedobjectserviceProvider } from '../providers/sharedobjectservice/sh
     MyApp,
     HomePage,
     DashboardPage,
-    InstallerPage
+    InstallerPage,
+    SignaturePage
   ],
   providers: [
     StatusBar,
