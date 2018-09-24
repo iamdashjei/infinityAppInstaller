@@ -170,7 +170,7 @@ export class InstallerPage {
   savedEshObjects(){
     const leadObject = this.sharedObject.getSharedSelectedLeadObject();
     const additional_fields = JSON.parse(leadObject["additional_fields"]);
-    console.log("Additional Fields to Concatenation " + JSON.stringify(additional_fields));
+    const eshFields = this.sharedObject.getSharedEshObject();
 
     let eshData = this.sharedObject.getSharedEshObject();
 
@@ -228,7 +228,16 @@ export class InstallerPage {
       numberOfEshInstalledNQlfyHHR:additional_fields.numberOfEshInstalledNQlfyHHR,
       qeshRepSL: additional_fields.qeshRepSL,
       qeshRepHHR: additional_fields.qeshRepHHR,
-      qeshFA: additional_fields.qeshFA
+      qeshFA: additional_fields.qeshFA,
+      dateOfEshAssessment: eshFields.dateOfEshAssessment,
+      totalNumberOfEshPrem: eshFields.totalNumberOfEshPrem,
+      totalNumberOfEshRep: eshFields.totalNumberOfEshRep,
+      electricityTerrif: eshFields.electricityTerrif,
+      locOfEsh: eshFields.locOfEsh,
+      typeOfEsh: eshFields.typeOfEsh,
+      eshResponsive: eshFields.eshResponsive,
+      eshBrandAndModel: eshFields.eshBrandAndModel,
+      eshSerialNumber: eshFields.eshSerialNumber
     }
 
     this.sharedObject.setSharedEshObjectImage(data);
