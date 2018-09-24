@@ -51,18 +51,7 @@ export class EDeclarationSignComponent {
               public sharedObject: SharedobjectserviceProvider) {
     console.log('Hello EDeclarationSignComponent Component');
 
-    // if(navParams.get('tag') == 'declare1'){
-    //   this.signatureImage = navParams.get('signatureImage');
-    //
-    //
-    // } else if(navParams.get('tag') == 'declare2') {
-    //   this.signatureImage2 = navParams.get('signatureImage');
-    // 
-    //
-    // } else if(navParams.get('tag') == 'declare3'){
-    //   this.signatureImage3 = navParams.get('signatureImage');
-    //
-    // }
+
 
     this.storage.get('declare1').then((declare1) => {
       if(declare1 != null){

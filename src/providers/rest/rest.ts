@@ -194,7 +194,7 @@ export class RestProvider {
     });
 
     return new Promise((resolve, reject) => {
-      this.http.post('https://app.infinityenergyorganisation.co.uk/v1/app/api/update-acceptLeadsBySurveyor', data, this.options)
+      this.http.post('https://app.infinityenergyorganisation.co.uk/v1/app/api/update-acceptLeadsByInstaller', data, this.options)
       .toPromise()
       .then((response) =>
       {
@@ -229,6 +229,16 @@ export class RestProvider {
     });
     this.loading.present();
     this.returnablePromise('https://app.infinityenergyorganisation.co.uk/v1/app/api/file-upload-mainform', data);
+  }
+
+  fileUploadInstaller(type, imgObj){
+    let data = JSON.stringify({
+      type: type,
+      imgObj: imgObj,
+      lead_slug: this.sharedObject.getSharedSlugSelectedCM()
+    });
+    this.loading.present();
+    this.returnablePromise('https://app.infinityenergyorganisation.co.uk/v1/app/api/file-upload-installer', data);
   }
 
 

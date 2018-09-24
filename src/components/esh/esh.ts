@@ -42,7 +42,7 @@ export class EshComponent {
               public storage: Storage,
               public sharedObject: SharedobjectserviceProvider) {
     console.log('Hello EshComponent Component');
-
+    sharedObject.setSharedMeasureToUpload("esh");
   }
 
   ionViewDidLoad(){
@@ -79,7 +79,7 @@ export class EshComponent {
       eshBrandAndModel: this.eshBrandAndModel,
       eshSerialNumber: this.eshSerialNumber
     };
-    console.log(JSON.stringify(obj));
+    //console.log(JSON.stringify(this.sharedObject.getSharedSelectedLeadObject()));
     this.sharedObject.setSharedEshObject(obj);
   }
 

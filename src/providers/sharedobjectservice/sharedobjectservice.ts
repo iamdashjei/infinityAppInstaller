@@ -17,6 +17,8 @@ export class SharedobjectserviceProvider {
   sharedCavityWallObject: any;
   sharedSolidWallObject: any;
 
+  sharedEshObjectImage: any;
+
   // Lead Object by Status
   sharedNewLeadsObject: any;
   sharedInProgressObject: any;
@@ -46,6 +48,10 @@ export class SharedobjectserviceProvider {
   // Lead Created Date
   sharedSelectedLeadCreatedDate: any;
 
+  // Measure to upload
+  sharedMeasureToUpload: string;
+
+
   constructor(public http: HttpClient) {
     console.log('Hello SharedobjectserviceProvider Provider');
   }
@@ -57,6 +63,15 @@ export class SharedobjectserviceProvider {
 
   getSharedEshObject(){
     return this.sharedEshObject;
+  }
+
+  // Shared Image Object ESH
+  setSharedEshObjectImage(sharedValue: any){
+    this.sharedEshObjectImage = sharedValue;
+  }
+
+  getSharedEshObjectImage(){
+    return this.sharedEshObjectImage;
   }
 
   // Shared Boiler Object
@@ -203,5 +218,15 @@ export class SharedobjectserviceProvider {
   getSharedSelectedLeadCreatedDate(){
     return this.setSharedSelectedLeadCreatedDate;
   }
+
+  // Set Campaign Measure to Upload
+  setSharedMeasureToUpload(sharedValue){
+    this.sharedMeasureToUpload = sharedValue;
+  }
+
+  getSharedMeasureToUpload(){
+    return this.sharedMeasureToUpload;
+  }
+
 
 }
