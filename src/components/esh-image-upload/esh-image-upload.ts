@@ -85,6 +85,20 @@ export class EshImageUploadComponent {
     this.camera.getPicture(options).then((imageData) => {
     console.log("This tag: " + tag);
 
+    if(tag == 'PPES'){
+      this.base64ImagePPES = 'data:image/jpeg;base64,' + imageData;
+
+    } else if(tag == 'PIBI'){
+      this.base64ImagePIBI = 'data:image/jpeg;base64,' + imageData;
+
+    } else if(tag == 'PICP'){
+      this.base64ImagePICP = 'data:image/jpeg;base64,' + imageData;
+
+
+    } else if(tag == 'PICA'){
+      this.base64ImagePICA = 'data:image/jpeg;base64,' + imageData;
+
+    }
 
     }, (err) => {
       console.log(err);
@@ -96,10 +110,52 @@ export class EshImageUploadComponent {
   uploadImage(tag){
   console.log("Upload Image: " + tag)
 
+    if(tag == 'PPES'){
+      this.storage.set('PPES', this.base64ImagePPES);
+      this.progressUploads(tag);
+
+    } else if(tag == 'PIBI'){
+      this.storage.set('PIBI', this.base64ImagePIBI);
+      this.progressUploads(tag);
+
+    } else if(tag == 'PICP'){
+      this.storage.set('PICP', this.base64ImagePICP);
+      this.progressUploads(tag);
+
+    } else if(tag == 'PICA'){
+      this.storage.set('PICA', this.base64ImagePICA);
+      this.progressUploads(tag);
+    }
+
   }
 
   progressUploads(tag){
   for(var i = 0; i <= 100; i+=10){
+    if(tag == 'PPES'){
+          this.progressPPES.percentage = i;
+          if(i == 100){
+            this.progressPPESStatus = "Completed";
+            this.colorPPES = "secondary";
+          }
+    } else if(tag == 'PIBI'){
+          this.progressPIBI.percentage = i;
+          if(i == 100){
+            this.progressPIBIStatus = "Completed";
+            this.colorPIBI = "secondary";
+          }
+    } else if(tag == 'PICP'){
+          this.progressPICP.percentage = i;
+          if(i == 100){
+            this.progressPICPStatus = "Completed";
+            this.colorPICP = "secondary";
+          }
+    } else if(tag == 'PICA'){
+          this.progressPICA.percentage = i;
+          if(i == 100){
+            this.progressPICAStatus = "Completed";
+            this.colorPICA = "secondary";
+          }
+    }
 
    }
   }

@@ -43,7 +43,7 @@
 
     <ion-item>
       <ion-label color="primary" stacked>Type of ESH</ion-label>
-      <ion-input [(ngModel)]="locOfEsh"></ion-input>
+      <ion-input [(ngModel)]="typeOfEsh"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -67,32 +67,32 @@
 
     <ion-item>
       <ion-label color="primary" stacked>ESH Location</ion-label>
-      <ion-input [(ngModel)]="locOfEsh"></ion-input>
+      <ion-input [(ngModel)]="locOfEshLoop"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>ESH Brand and Model</ion-label>
-      <ion-input [(ngModel)]="locOfEsh"></ion-input>
+      <ion-input [(ngModel)]="brandOfEshLoop"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>ESH Serial Number</ion-label>
-      <ion-input [(ngModel)]="eshSerialNumberRep"></ion-input>
+      <ion-input [(ngModel)]="eshSerialNumberRepLoop"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Type of ESH</ion-label>
-      <ion-input [(ngModel)]="typeOfEshRep"></ion-input>
+      <ion-input [(ngModel)]="typeOfEshRepLoop"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Automatic Charge Control</ion-label>
-      <ion-input [(ngModel)]="automaticChargeControlRep"></ion-input>
+      <ion-input [(ngModel)]="automaticChargeControlRepLoop"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>KW Rating</ion-label>
-      <ion-input [(ngModel)]="kwRatingRep"></ion-input>
+      <ion-input [(ngModel)]="kwRatingRepLoop"></ion-input>
     </ion-item>
 
     </ion-row>
@@ -102,7 +102,7 @@
       <ion-input [(ngModel)]="eshCostScore"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <!-- <ion-item>
       <ion-label color="primary" stacked>PPES (ELECTRICAL CERT)</ion-label>
       <ion-input [(ngModel)]="eshPPES"></ion-input>
     </ion-item>
@@ -120,7 +120,14 @@
     <ion-item>
       <ion-label color="primary" stacked>PICA</ion-label>
       <ion-input [(ngModel)]="eshPICA"></ion-input>
+    </ion-item> -->
+
+
+    <ion-item>
+        <button ion-button class="primary" (click)="saveEshObject()">Save</button>
     </ion-item>
+
+
 
     <!-- PUT SIGNATURE PAGE HERE-->
 

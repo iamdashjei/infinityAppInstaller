@@ -43,6 +43,9 @@ export class SharedobjectserviceProvider {
   // Flag Selected Lead
   sharedSelectedLeadObject: any;
 
+  // Lead Created Date
+  sharedSelectedLeadCreatedDate: any;
+
   constructor(public http: HttpClient) {
     console.log('Hello SharedobjectserviceProvider Provider');
   }
@@ -190,6 +193,15 @@ export class SharedobjectserviceProvider {
 
   getSharedSelectedLeadObject(){
     return this.sharedSelectedLeadObject;
+  }
+
+  // Set Date of Selected Lead
+  setSharedSelectedLeadCreatedDate(sharedValue){
+    this.setSharedSelectedLeadCreatedDate = sharedValue;
+  }
+
+  getSharedSelectedLeadCreatedDate(){
+    return this.setSharedSelectedLeadCreatedDate;
   }
 
 }
