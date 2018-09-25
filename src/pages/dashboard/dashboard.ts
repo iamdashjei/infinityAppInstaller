@@ -33,7 +33,7 @@ export class DashboardPage {
   leadsInProgress: any;
   leadsCompleted: any;
   user_id: any;
-
+  
   constructor(public navCtrl: NavController,
               public menuCtrl: MenuController,
               private badge: Badge,
@@ -44,7 +44,7 @@ export class DashboardPage {
               public imagePicker: ImagePicker,
               public loadingCtrl: LoadingController,
               public toastCtrl: ToastController,
-              public sharedObject: SharedobjectserviceProvider,) {
+              public sharedObject: SharedobjectserviceProvider) {
   }
 
   ionViewDidLoad() {

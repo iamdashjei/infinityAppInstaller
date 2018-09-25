@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\components",
+    "\\src\\components\\esh",
+    "\\src\\pages",
+    "\\src\\pages\\dashboard",
+    "\\src\\pages\\installer"
+  ],
+  "SelectedNode": "\\src\\components\\esh\\esh.ts",
+  "PreviewInSolutionExplorer": false
+}

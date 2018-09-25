@@ -27,6 +27,9 @@ export class InstallerPage {
   eshPICP: any;
   eshPICA: any;
   eshPPES: any;
+  signatureImage: any;
+  signatureImage2: any;
+  signatureImage3: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -167,35 +170,54 @@ export class InstallerPage {
    }
   }
 
-  savedEshObjects(){
-    const leadObject = this.sharedObject.getSharedSelectedLeadObject();
-    const additional_fields = JSON.parse(leadObject["additional_fields"]);
-    const eshFields = this.sharedObject.getSharedEshObject();
-
-    let eshData = this.sharedObject.getSharedEshObject();
-
+  savedEshImages(){
     this.storage.get('PPES').then((PPES) => {
-    this.eshPPES = PPES;
+      this.eshPPES = PPES;
+  
     });
 
     this.storage.get('PIBI').then((PIBI) => {
-    this.eshPIBI = PIBI;
+      this.eshPIBI = PIBI;
+  
     });
 
     this.storage.get('PICP').then((PICP) => {
-    this.eshPICP = PICP;
+      this.eshPICP = PICP;
+    
     });
 
     this.storage.get('PICA').then((PICA) => {
-    this.eshPICA = PICA;
+      this.eshPICA = PICA;
+  
     });
 
-    let data = {
-      eshPPES: this.eshPPES,
-      eshPIBI: this.eshPIBI,
-      eshPICP: this.eshPICP,
-      eshPICA: this.eshPICA
-    };
+    this.storage.get('declare1').then((declare1) => {
+      
+          this.signatureImage = declare1;
+      
+     });
+
+     this.storage.get('declare2').then((declare2) => {
+      
+           this.signatureImage2 = declare2;
+     
+    });
+
+    this.storage.get('declare3').then((declare3) => {
+      
+          this.signatureImage3 = declare3;
+      
+   });
+    
+  }
+
+  savedEshObjects(){
+    this.savedEshImages();
+    const leadObject = this.sharedObject.getSharedSelectedLeadObject();
+    const additional_fields = JSON.parse(leadObject["additional_fields"]);
+    const eshFields = this.sharedObject.getSharedEshObject();
+    
+   
 
     let additional_fields_update = {
       date_of_survey: additional_fields.date_of_survey,
@@ -207,7 +229,7 @@ export class InstallerPage {
       postCode: additional_fields.postCode,
       bedrooms: additional_fields.bedrooms,
       tenure: additional_fields.tenure,
-      heating_source: additional_fieldsa.heating_source,
+      heating_source: additional_fields.heating_source,
       customer_type: additional_fields.customer_type,
       surveyor_name: additional_fields.surveyor_name,
       name_of_customer: additional_fields.name_of_customer,
@@ -238,28 +260,44 @@ export class InstallerPage {
       eshResponsive: eshFields.eshResponsive,
       eshBrandAndModel: eshFields.eshBrandAndModel,
       eshSerialNumber: eshFields.eshSerialNumber
-    }
+      
+    };
 
-    this.sharedObject.setSharedEshObjectImage(data);
+    console.log(JSON.stringify(additional_fields_update));
+  
+    this.sharedObject.setSharedSubmitObject(additional_fields_update);
+   // this.sharedObject.setSharedEshObjectImage(data);
 
   }
 
   savedObject(){
     if(this.sharedObject.getSharedMeasureToUpload() == 'esh'){
+      
       this.savedEshObjects();
       alert("Saved Lead Successfully!");
     }
   }
 
   submitObject(){
+    const data = {
+      eshPPES: this.eshPPES,
+      eshPIBI: this.eshPIBI,
+      eshPICP: this.eshPICP,
+      eshPICA: this.eshPICA,
+      signatureImage: this.signatureImage,
+      signatureImage2: this.signatureImage2,
+      signatureImage3: this.signatureImage3
+    };
+
+    //console.log(JSON.stringify(data));
     const submitData = this.sharedObject.getSharedSubmitObject();
 
-    // this.rest.updateLeadData(this.lead_slug).then((result) =>  {
-    //   console.log(result);
-    //
-    // }, (err) => {
-    //   console.log(err);
-    // });
+    this.rest.updateLeadData(this.lead_slug,submitData).then((result) =>  {
+      console.log(result);
+        this.rest.fileUploadInstaller(this.sharedObject.getSharedMeasureToUpload(), data);
+    }, (err) => {
+      console.log(err);
+    });
 
   }
 

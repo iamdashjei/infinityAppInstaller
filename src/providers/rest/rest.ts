@@ -182,14 +182,10 @@ export class RestProvider {
     });
   }
 
-  updateLeadData(lead_slug, additional_fields, notes, postCode, addressInstall, nameOfCustomer){
+  updateLeadData(lead_slug, additional_fields){
     let data = JSON.stringify({
       lead_slug: lead_slug,
       additional_fields: JSON.stringify(additional_fields),
-      notes: notes,
-      postCode: postCode,
-      addressInstall: addressInstall,
-      nameOfCustomer: nameOfCustomer,
       user_id: this.sharedObject.getSharedUserId()
     });
 
