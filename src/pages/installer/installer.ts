@@ -21,6 +21,7 @@ export class InstallerPage {
   lead_info: any;
   leadCreatedDate: any;
   leadCustName: any;
+  leadSelected: any;
 
   // ESH CM
   eshPIBI: any;
@@ -36,29 +37,40 @@ export class InstallerPage {
               public storage: Storage,
               public rest: RestProvider,
               public sharedObject: SharedobjectserviceProvider) {
-    this.campaignMeasureView = navParams.get('campaignValue');
-    this.lead_slug = navParams.get('lead_slug');
-    this.leadCreatedDate = navParams.get('leadCreatedDate');
-    this.leadCustName = navParams.get('leadCustName');
-    this.sharedObject.setSharedSelectedLeadObject(navParams.get('leadItem'));
-
+    if(sharedObject.getSharedCampaignMeasure() == null){
+      
+      this.campaignMeasureView = navParams.get('campaignValue');
+      this.lead_slug = navParams.get('lead_slug');
+      this.leadCreatedDate = navParams.get('leadCreatedDate');
+      this.leadCustName = navParams.get('leadCustName');
+      this.leadSelected = navParams.get('leadItem');
+      // sharedObject.setSharedSelectedLeadCreatedDate(this.leadCreatedDate);
+      // sharedObject.setSharedCustName(this.leadCustName);
+      // sharedObject.setSharedSlugSelectedCM(this.lead_slug);
+      // sharedObject.setSharedCampaignMeasure(this.campaignMeasureView);
+     // this.storage.set("leadSelected", this.sharedObject.getSharedSelectedLeadObject());
+      sharedObject.setSharedSelectedLeadObject(this.leadSelected);
+      sharedObject.setSharedCampaignMeasure(this.campaignMeasureView);
+      sharedObject.setSharedCustName(this.leadCustName);
+      sharedObject.setSharedSlugSelectedCM(this.lead_slug);
+      sharedObject.setSharedDate(this.leadCreatedDate);
+     
+    }
+          
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InstallerPage');
 
     if(this.sharedObject.getSharedCampaignMeasure() != null){
+      console.log("Getting all objects!");
       this.campaignMeasureView = this.sharedObject.getSharedCampaignMeasure();
       this.lead_slug = this.sharedObject.getSharedSlugSelectedCM();
-      this.leadCreatedDate = this.sharedObject.getSharedSelectedLeadCreatedDate();
+      this.leadCreatedDate = this.sharedObject.getSharedDate();
       this.leadCustName = this.sharedObject.getSharedCustName();
-    } else {
-      this.sharedObject.setSharedSelectedLeadCreatedDate(this.leadCreatedDate);
-      this.sharedObject.setSharedCustName(this.leadCustName);
-      this.sharedObject.setSharedSlugSelectedCM(this.lead_slug);
-      this.sharedObject.setSharedCampaignMeasure(this.campaignMeasureView);
-
-    }
+      this.storage.set(this.lead_slug + "_additionalFields", this.sharedObject.getSharedSelectedLeadObject());
+      this.storage.set("lead_slug", this.lead_slug);
+    } 
   }
 
   // View Restriction for Forms. etc.
@@ -171,40 +183,40 @@ export class InstallerPage {
   }
 
   savedEshImages(){
-    this.storage.get('PPES').then((PPES) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + '_PPES').then((PPES) => {
       this.eshPPES = PPES;
   
     });
 
-    this.storage.get('PIBI').then((PIBI) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + '_PIBI').then((PIBI) => {
       this.eshPIBI = PIBI;
   
     });
 
-    this.storage.get('PICP').then((PICP) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + '_PICP').then((PICP) => {
       this.eshPICP = PICP;
     
     });
 
-    this.storage.get('PICA').then((PICA) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + '_PICA').then((PICA) => {
       this.eshPICA = PICA;
   
     });
 
-    this.storage.get('declare1').then((declare1) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + '_declare1').then((declare1) => {
       
           this.signatureImage = declare1;
       
      });
 
-     this.storage.get('declare2').then((declare2) => {
+     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + '_declare2').then((declare2) => {
       
            this.signatureImage2 = declare2;
      
     });
 
-    this.storage.get('declare3').then((declare3) => {
-      
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + '_declare3').then((declare3) => {
+
           this.signatureImage3 = declare3;
       
    });
@@ -213,6 +225,7 @@ export class InstallerPage {
 
   savedEshObjects(){
     this.savedEshImages();
+
     const leadObject = this.sharedObject.getSharedSelectedLeadObject();
     const additional_fields = JSON.parse(leadObject["additional_fields"]);
     const eshFields = this.sharedObject.getSharedEshObject();
@@ -254,7 +267,7 @@ export class InstallerPage {
       dateOfEshAssessment: eshFields.dateOfEshAssessment,
       totalNumberOfEshPrem: eshFields.totalNumberOfEshPrem,
       totalNumberOfEshRep: eshFields.totalNumberOfEshRep,
-      electricityTerrif: eshFields.electricityTerrif,
+      electricityTarrif: eshFields.electricityTarrif,
       locOfEsh: eshFields.locOfEsh,
       typeOfEsh: eshFields.typeOfEsh,
       eshResponsive: eshFields.eshResponsive,
@@ -263,7 +276,7 @@ export class InstallerPage {
       
     };
 
-    console.log(JSON.stringify(additional_fields_update));
+    // console.log(JSON.stringify(additional_fields_update));
   
     this.sharedObject.setSharedSubmitObject(additional_fields_update);
    // this.sharedObject.setSharedEshObjectImage(data);

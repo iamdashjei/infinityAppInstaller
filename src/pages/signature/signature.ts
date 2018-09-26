@@ -25,10 +25,13 @@ export class SignaturePage {
 
   public signatureImage : string;
   tag: any;
+  lead_slug: any;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public storage: Storage  ) {
       this.tag =  navParams.get('tag');
+      this.lead_slug = navParams.get('lead_slug');
   }
 
   ngAfterViewInit() {
@@ -49,25 +52,28 @@ export class SignaturePage {
   drawCancel() {
     this
       .navCtrl
-      .push(InstallerPage);
+      .pop();
 
   }
 
   drawComplete() {
     if(this.tag == "declare1"){
       this.signatureImage = this.signaturePad.toDataURL();
-      this.storage.set("declare1", this.signatureImage);
+      this.storage.set(this.lead_slug + "_declare1", this.signatureImage);
 
     } else if (this.tag == "declare2"){
       this.signatureImage = this.signaturePad.toDataURL();
-      this.storage.set("declare2", this.signatureImage);
+      this.storage.set(this.lead_slug + "_declare2", this.signatureImage);
 
     } else if (this.tag == "declare3"){
       this.signatureImage = this.signaturePad.toDataURL();
-      this.storage.set("declare3", this.signatureImage);
+      this.storage.set(this.lead_slug + "_declare3", this.signatureImage);
     }
-
-    this.navCtrl.push(InstallerPage, {signatureImage: this.signatureImage, tag: this.tag});
+    
+    this.navCtrl.push(InstallerPage, {signatureImage: this.signatureImage, tag: this.tag}).then(() => {
+      const index = this.navCtrl.getActive().index;
+      this.navCtrl.remove(0, index);
+    });
   }
 
   drawClear() {

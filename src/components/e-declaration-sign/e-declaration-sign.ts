@@ -53,19 +53,19 @@ export class EDeclarationSignComponent {
 
 
 
-    this.storage.get('declare1').then((declare1) => {
+    this.storage.get(sharedObject.getSharedSlugSelectedCM() + '_declare1').then((declare1) => {
       if(declare1 != null){
           this.signatureImage = declare1;
       }
      });
 
-     this.storage.get('declare2').then((declare2) => {
+     this.storage.get(sharedObject.getSharedSlugSelectedCM() + '_declare2').then((declare2) => {
        if(declare2 != null){
            this.signatureImage2 = declare2;
        }
     });
 
-    this.storage.get('declare3').then((declare3) => {
+    this.storage.get(sharedObject.getSharedSlugSelectedCM() + '_declare3').then((declare3) => {
       if(declare3 != null){
           this.signatureImage3 = declare3;
       }
@@ -150,7 +150,7 @@ export class EDeclarationSignComponent {
 
   openSignatureModel(tag){
     setTimeout(() => {
-       let modal = this.modalController.create(SignaturePage, { tag: tag});
+       let modal = this.modalController.create(SignaturePage, { tag: tag, lead_slug: this.sharedObject.getSharedSlugSelectedCM()});
     modal.present();
     }, 300);
 

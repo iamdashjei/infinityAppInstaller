@@ -23,7 +23,7 @@ export class EshComponent {
   dateOfEshAssessment: any;
   totalNumberOfEshPrem: any;
   totalNumberOfEshRep: any;
-  electricityTerrif: any;
+  electricityTarrif: any;
   locOfEsh: any;
   typeOfEsh: any;
   eshResponsive: any;
@@ -49,11 +49,28 @@ export class EshComponent {
 
     console.log(this.eshFormContent.nativeElement);
     this.renderer.setElementStyle(this.eshFormContent.nativeElement, "webkitTransition", "max-height 1600ms, padding 500ms");
-
   }
 
   // Toggle Form For ESH
   toggleAccordionESH() {
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_eshFields").then((esh) => {
+      if(esh != null){
+        let data = esh;
+
+        this.dateOfEshAssessment = data.dateOfEshAssessment;
+        this.totalNumberOfEshPrem = data.totalNumberOfEshPrem;
+        this.totalNumberOfEshRep = data.totalNumberOfEshRep;
+        this.electricityTarrif = data.electricityTarrif;
+        this.locOfEsh = data.locOfEsh;
+        this.typeOfEsh = data.typeOfEsh;
+        this.eshResponsive = data.eshResponsive;
+        this.eshBrandAndModel = data.eshBrandAndModel;
+        this.eshSerialNumber = data.eshSerialNumber;
+
+      }
+    });
+
     if(this.accordionExpanded){
       this.renderer.setElementStyle(this.eshFormContent.nativeElement, "max-height", "0px");
       this.renderer.setElementStyle(this.eshFormContent.nativeElement, "padding", "0px 16px");
@@ -72,7 +89,7 @@ export class EshComponent {
       dateOfEshAssessment: this.dateOfEshAssessment,
       totalNumberOfEshPrem: this.totalNumberOfEshPrem,
       totalNumberOfEshRep: this.totalNumberOfEshRep,
-      electricityTerrif: this.electricityTerrif,
+      electricityTarrif: this.electricityTarrif,
       locOfEsh: this.locOfEsh,
       typeOfEsh: this.typeOfEsh,
       eshResponsive: this.eshResponsive,
@@ -81,6 +98,9 @@ export class EshComponent {
     };
     //console.log(JSON.stringify(this.sharedObject.getSharedSelectedLeadObject()));
     this.sharedObject.setSharedEshObject(obj);
+    console.log("ESH OBJECT => " + JSON.stringify(obj));
+
+    this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_eshFields", obj);
   }
 
 

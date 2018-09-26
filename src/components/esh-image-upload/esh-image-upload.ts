@@ -59,6 +59,35 @@ export class EshImageUploadComponent {
 
   // Toggle Form For ESH
   toggleAccordionESHImage() {
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_PPES").then((PPES) => {
+      PPES != null ? this.base64ImagePPES = PPES : this.base64ImagePPES = '';
+      PPES != null ? this.progressPPES.percentage = 100 : this.progressPPES.percentage = 0;
+      PPES != null ? this.progressPPESStatus = "Completed" : this.progressPPESStatus = "Not yet completed.";
+      PPES != null ? this.colorPPES = "secondary" : this.colorPPES = "danger";
+    });
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_PIBI").then((PIBI) => {
+      PIBI != null ? this.base64ImagePIBI = PIBI : this.base64ImagePIBI = '';
+      PIBI != null ? this.progressPIBI.percentage = 100 : this.progressPIBI.percentage = 0;
+      PIBI != null ? this.progressPIBIStatus = "Completed" : this.progressPIBIStatus = "Not yet completed.";
+      PIBI != null ? this.colorPIBI = "secondary" : this.colorPIBI = "danger";
+    });
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_PICP").then((PICP) => {
+      PICP != null ? this.base64ImagePICP = PICP : this.base64ImagePICP = '';
+      PICP != null ? this.progressPICP.percentage = 100 : this.progressPICP.percentage = 0;
+      PICP != null ? this.progressPICPStatus = "Completed" : this.progressPICPStatus = "Not yet completed.";
+      PICP != null ? this.colorPICP = "secondary" : this.colorPICP = "danger";
+    });
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_PICA").then((PICA) => {
+      PICA != null ? this.base64ImagePICA = PICA : this.base64ImagePICA = '';
+      PICA != null ? this.progressPICA.percentage = 100 : this.progressPICA.percentage = 0;
+      PICA != null ? this.progressPICAStatus = "Completed" : this.progressPICAStatus = "Not yet completed.";
+      PICA != null ? this.colorPICA = "secondary" : this.colorPICA = "danger";
+    });
+
     if(this.accordionExpanded){
       this.renderer.setElementStyle(this.eshFormContent.nativeElement, "max-height", "0px");
       this.renderer.setElementStyle(this.eshFormContent.nativeElement, "padding", "0px 16px");
@@ -111,19 +140,19 @@ export class EshImageUploadComponent {
   console.log("Upload Image: " + tag)
 
     if(tag == 'PPES'){
-      this.storage.set('PPES', this.base64ImagePPES);
+      this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + '_PPES', this.base64ImagePPES);
       this.progressUploads(tag);
 
     } else if(tag == 'PIBI'){
-      this.storage.set('PIBI', this.base64ImagePIBI);
+      this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + '_PIBI', this.base64ImagePIBI);
       this.progressUploads(tag);
 
     } else if(tag == 'PICP'){
-      this.storage.set('PICP', this.base64ImagePICP);
+      this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + '_PICP', this.base64ImagePICP);
       this.progressUploads(tag);
 
     } else if(tag == 'PICA'){
-      this.storage.set('PICA', this.base64ImagePICA);
+      this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + '_PICA', this.base64ImagePICA);
       this.progressUploads(tag);
     }
 

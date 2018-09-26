@@ -31,6 +31,41 @@
 
 
 <ion-content padding>
+
+    <ion-card>
+
+        <ion-item>
+          <ion-avatar item-start>
+            <img src="assets/imgs/avatar/marty-avatar.png">
+          </ion-avatar>
+          <h2>{{ leadCustName }}</h2>
+          <p> {{ campaignMeasureView }} </p>
+          <p> {{ leadCreatedDate | timeAgo }} </p>
+          <p> {{ lead_slug }} </p>
+        </ion-item>
+      
+        <!-- <img src="assets/imgs/profile/advance-card-bttf.png" height="50" width="50"> -->
+      
+        <ion-card-content>
+          <p>All Fields are required.</p>
+        </ion-card-content>
+      
+        <ion-row>
+          <ion-col>
+            <button ion-button icon-start clear small>
+              <ion-icon name="text"></ion-icon>
+              <div>4 Notes</div>
+            </button>
+          </ion-col>
+          <ion-col center text-center>
+            <ion-note>
+              <!-- {{ leadCreatedDate | timeAgo }} -->
+            </ion-note>
+          </ion-col>
+        </ion-row>
+      
+      </ion-card>
+
   <esh title="Electric Storage Heater Measures" *ngIf="isViewedESH()">Electric Storage Heater Measures</esh>
   <esh-image-upload title="Electric Storage Heater Measures Image Upload" *ngIf="isViewedESH()">Electric Storage Heater Measures Image Upload</esh-image-upload>
   <loft title="Loft Measures" *ngIf="isViewedLoft()">Loft Measures</loft>

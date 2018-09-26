@@ -39,6 +39,9 @@ export class SharedobjectserviceProvider {
   // Cust name
   sharedCustName: any;
 
+  // Date
+  date: any;
+
   // Submit Objects
   sharedSubmitObjects: any;
 
@@ -228,5 +231,11 @@ export class SharedobjectserviceProvider {
     return this.sharedMeasureToUpload;
   }
 
+  setSharedDate(sharedValue){
+    this.date = sharedValue;
+  }
 
+  getSharedDate(){
+    return this.date;
+  }
 }

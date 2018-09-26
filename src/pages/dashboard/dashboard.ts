@@ -39,8 +39,6 @@ export class DashboardPage {
               private badge: Badge,
               public storage: Storage,
               public rest: RestProvider,
-              private camera: Camera,
-              private transfer: FileTransfer,
               public imagePicker: ImagePicker,
               public loadingCtrl: LoadingController,
               public toastCtrl: ToastController,
@@ -50,6 +48,11 @@ export class DashboardPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad DashboardPage');
     this.getLeadsAssigned();
+  }
+
+  ionViewWillEnter(){
+    console.log("ENTERED VIEW");
+    this.sharedObject.setSharedCampaignMeasure(null);
   }
 
   getLeadsAssigned(){
@@ -71,7 +74,7 @@ export class DashboardPage {
   }
 
   openLeads(lead_slug, campaign_name, leadItem, leadCreatedDate, leadCustName){
-    this.sharedObject.setSharedCampaignMeasure(campaign_name);
+
     this.navCtrl.push(InstallerPage, {
       lead_slug: lead_slug,
       campaignValue: campaign_name,
