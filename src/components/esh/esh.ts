@@ -31,12 +31,18 @@ export class EshComponent {
   eshSerialNumber: any;
 
   eshCostScore: any;
+
+  numberOfPremises: number[]   = [];
   // eshPPES: any;
   // eshPIBI: any;
   // eshPICP: any;
   // eshPICA: any;
 
   numberOfFields: number[] = [];
+  numberOfReplace: number[] = [];
+  dependentFields: any = [];
+
+  premiseArray: any = [];
 
   constructor(public renderer: Renderer,
               public storage: Storage,
@@ -48,7 +54,7 @@ export class EshComponent {
   ionViewDidLoad(){
 
     console.log(this.eshFormContent.nativeElement);
-    this.renderer.setElementStyle(this.eshFormContent.nativeElement, "webkitTransition", "max-height 1600ms, padding 500ms");
+    this.renderer.setElementStyle(this.eshFormContent.nativeElement, "webkitTransition", "max-height 10000ms, padding 500ms");
   }
 
   // Toggle Form For ESH
@@ -67,7 +73,7 @@ export class EshComponent {
         this.eshResponsive = data.eshResponsive;
         this.eshBrandAndModel = data.eshBrandAndModel;
         this.eshSerialNumber = data.eshSerialNumber;
-
+        this.eshCostScore = data.eshCostScore;
       }
     });
 
@@ -75,12 +81,28 @@ export class EshComponent {
       this.renderer.setElementStyle(this.eshFormContent.nativeElement, "max-height", "0px");
       this.renderer.setElementStyle(this.eshFormContent.nativeElement, "padding", "0px 16px");
     } else {
-      this.renderer.setElementStyle(this.eshFormContent.nativeElement, "max-height", "1600px");
+      this.renderer.setElementStyle(this.eshFormContent.nativeElement, "max-height", "10000px");
       this.renderer.setElementStyle(this.eshFormContent.nativeElement, "padding", "13px 16px");
     }
 
     this.accordionExpanded = !this.accordionExpanded;
     this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
+
+  }
+
+  addFieldsPremises(count: number){
+    
+    for(let i = 1; i <= count; i++){
+      this.numberOfPremises.push(i);
+    }
+
+   
+  }
+
+  addFieldsReplace(count: number){
+    for(let i = 1; i <= count; i++){
+      this.numberOfReplace.push(i);
+    }
 
   }
 
@@ -94,7 +116,8 @@ export class EshComponent {
       typeOfEsh: this.typeOfEsh,
       eshResponsive: this.eshResponsive,
       eshBrandAndModel: this.eshBrandAndModel,
-      eshSerialNumber: this.eshSerialNumber
+      eshSerialNumber: this.eshSerialNumber,
+      eshCostScore: this.eshCostScore
     };
     //console.log(JSON.stringify(this.sharedObject.getSharedSelectedLeadObject()));
     this.sharedObject.setSharedEshObject(obj);
@@ -103,5 +126,8 @@ export class EshComponent {
     this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_eshFields", obj);
   }
 
+  saveEshArray(){
+    alert(this.premiseArray);
+  }
 
 }

@@ -20,12 +20,12 @@
 
     <ion-item>
       <ion-label color="primary" stacked>Total Number of ESH in the premises</ion-label>
-      <ion-input clearInput type="number" [(ngModel)]="totalNumberOfEshPrem"></ion-input>
+      <ion-input clearInput type="number" [(ngModel)]="totalNumberOfEshPrem" (change)="addFieldsPremises(totalNumberOfEshPrem)"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Total Number of ESH being replaced</ion-label>
-      <ion-input clearInput type="number" [(ngModel)]="totalNumberOfEshRep"></ion-input>
+      <ion-input clearInput type="number" [(ngModel)]="totalNumberOfEshRep" (change)="addFieldsReplace(totalNumberOfEshRep)"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -38,33 +38,48 @@
       <ion-input [(ngModel)]="locOfEsh"></ion-input>
     </ion-item>
 
-
-    <ion-row>
-
+    
+    <ion-row *ngFor="let item of numberOfPremises;">
+        
+    <ion-item-divider>
+      ESH Premise ({{ item }})
+    </ion-item-divider>
     <ion-item>
       <ion-label color="primary" stacked>Type of ESH</ion-label>
-      <ion-input [(ngModel)]="typeOfEsh"></ion-input>
+      <ion-input [(ngModel)]="premiseTypeOfEshArray[item]"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>ESH Responsive</ion-label>
-      <ion-input [(ngModel)]="eshResponsive"></ion-input>
+      <ion-input [(ngModel)]="premiseEshResponsiveArray[item]"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>ESH Brand and Model</ion-label>
-      <ion-input [(ngModel)]="eshBrandAndModel"></ion-input>
+      <ion-input [(ngModel)]="premiseEshBrandAndModelArray[item]"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>ESH Serial Number</ion-label>
-      <ion-input [(ngModel)]="eshSerialNumber"></ion-input>
+      <ion-input [(ngModel)]="premiseEshSerialNumArray[item]"></ion-input>
     </ion-item>
 
+    <ion-item>
+        <ion-label color="primary" stacked>What steps did you take to determine that ESH {{ item }} is broken down?</ion-label>
+        <ion-select [(ngModel)]="dependentFields[i]">
+          <ion-option value="Functional Text">Functional Text</ion-option>
+          <ion-option value="Voltage Test">Voltage Test</ion-option>
+          <ion-option value="Multimeter Test">Multimeter Test</ion-option>
+          <ion-option value="Type Of ESH">Type Of ESH</ion-option>
+          <ion-option value="Other">Other</ion-option>
+        </ion-select>
+      </ion-item>
     </ion-row>
 
-    <ion-row>
-
+    <ion-row *ngFor="let item2 of numberOfReplace;">
+      <ion-item-divider>
+          ESH Replace ({{ item2 }})
+      </ion-item-divider>    
     <ion-item>
       <ion-label color="primary" stacked>ESH Location</ion-label>
       <ion-input [(ngModel)]="locOfEshLoop"></ion-input>
@@ -96,14 +111,21 @@
     </ion-item>
 
     </ion-row>
-
+  
+    <ion-item-divider>
+       Cost Score
+    </ion-item-divider>
     <ion-item>
       <ion-label color="primary" stacked>Cost Score</ion-label>
       <ion-input [(ngModel)]="eshCostScore"></ion-input>
     </ion-item>
-
+    
     <ion-item>
         <button ion-button class="primary" (click)="saveEshObject()">Save</button>
+    </ion-item>
+
+    <ion-item>
+        <button ion-button class="primary" (click)="saveEshArray()">Save Array</button>
     </ion-item>
 
 

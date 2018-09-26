@@ -272,8 +272,8 @@ export class InstallerPage {
       typeOfEsh: eshFields.typeOfEsh,
       eshResponsive: eshFields.eshResponsive,
       eshBrandAndModel: eshFields.eshBrandAndModel,
-      eshSerialNumber: eshFields.eshSerialNumber
-      
+      eshSerialNumber: eshFields.eshSerialNumber,
+      eshCostScore: eshFields.eshCostScore
     };
 
     // console.log(JSON.stringify(additional_fields_update));
