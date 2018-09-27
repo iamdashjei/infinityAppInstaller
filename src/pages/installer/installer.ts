@@ -273,11 +273,22 @@ export class InstallerPage {
       eshResponsive: eshFields.eshResponsive,
       eshBrandAndModel: eshFields.eshBrandAndModel,
       eshSerialNumber: eshFields.eshSerialNumber,
+      eshPremiseType: eshFields.eshPremiseType,
+      eshPremiseResponsive: eshFields.eshPremiseResponsive,
+      eshPremiseBrandAndModel: eshFields.eshPremiseBrandAndModel,
+      eshPremiseSerialNumber: eshFields.eshPremiseSerialNumber,
+      eshPremiseSteps: eshFields.eshPremiseSteps,
+      eshReplaceLocOfesh: eshFields.eshReplaceLocOfesh,
+      eshReplaceBrandOfEsh: eshFields.eshReplaceBrandOfEsh,
+      eshReplaceSerialNumber: eshFields.eshReplaceSerialNumber,
+      eshReplaceTypeOfEsh: eshFields.eshReplaceTypeOfEsh,
+      eshReplaceAutoChargeCtrl: eshFields.eshReplaceAutoChargeCtrl,
+      eshReplaceKWRating: eshFields.eshReplaceKWRating,
       eshCostScore: eshFields.eshCostScore
     };
 
-    // console.log(JSON.stringify(additional_fields_update));
-  
+    console.log(JSON.stringify(additional_fields_update));
+    
     this.sharedObject.setSharedSubmitObject(additional_fields_update);
    // this.sharedObject.setSharedEshObjectImage(data);
 

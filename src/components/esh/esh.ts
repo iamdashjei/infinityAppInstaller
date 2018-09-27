@@ -40,9 +40,20 @@ export class EshComponent {
 
   numberOfFields: number[] = [];
   numberOfReplace: number[] = [];
-  dependentFields: any = [];
 
-  premiseArray: any = [];
+  dependentFields: any = [];
+  premiseTypeOfEshArray: any = [];
+  premiseEshResponsiveArray: any = [];
+  premiseEshBrandAndModelArray: any = [];
+  premiseEshSerialNumArray: any = [];
+
+  replaceLocOfEshArray: any = [];
+  replaceBrandOfEshArray: any = [];
+  replaceSerialNumberEshArray: any = [];
+  replaceSTypeOfEshArray: any = [];
+  replaceAutomaticChargeCtrlEshArray: any = [];
+  replaceKwRatingEshArray: any = [];
+
 
   constructor(public renderer: Renderer,
               public storage: Storage,
@@ -63,6 +74,8 @@ export class EshComponent {
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_eshFields").then((esh) => {
       if(esh != null){
         let data = esh;
+        this.numberOfPremises = [];
+        this.numberOfReplace = [];
 
         this.dateOfEshAssessment = data.dateOfEshAssessment;
         this.totalNumberOfEshPrem = data.totalNumberOfEshPrem;
@@ -74,6 +87,34 @@ export class EshComponent {
         this.eshBrandAndModel = data.eshBrandAndModel;
         this.eshSerialNumber = data.eshSerialNumber;
         this.eshCostScore = data.eshCostScore;
+        this.premiseTypeOfEshArray = data.eshPremiseType;
+        this.premiseEshBrandAndModelArray = data.eshPremiseBrandAndModel;
+        this.premiseEshResponsiveArray = data.eshPremiseResponsive;
+        this.premiseEshSerialNumArray = data.eshPremiseSerialNumber;
+        this.dependentFields = data.eshPremiseSteps;
+        this.replaceLocOfEshArray = data.eshReplaceLocOfesh;
+        this.replaceAutomaticChargeCtrlEshArray = data.eshReplaceAutoChargeCtrl;
+        this.replaceBrandOfEshArray = data.eshReplaceBrandOfEsh;
+        this.replaceSerialNumberEshArray = data.eshReplaceSerialNumber;
+        this.replaceSTypeOfEshArray = data.eshReplaceTypeOfEsh;
+        this.replaceKwRatingEshArray = data.eshReplaceKWRating;
+
+
+        for(let i = 1; i <= this.totalNumberOfEshPrem; i++){
+         
+          this.numberOfPremises.push(i);
+          //this.premiseTypeOfEshArray.push(data.eshPremiseType);
+          
+          //console.log("Data Premise => " + data.eshPremiseType[i]);
+        }
+
+        for(let i = 1; i <= this.totalNumberOfEshRep; i++){
+         
+          this.numberOfReplace.push(i);
+          //console.log("Data Premise => " + data.eshPremiseType[i]);
+        }
+
+        //console.log("Premise Type Esh => " + data.eshPremiseType);
       }
     });
 
@@ -91,7 +132,7 @@ export class EshComponent {
   }
 
   addFieldsPremises(count: number){
-    
+    this.numberOfPremises = [];
     for(let i = 1; i <= count; i++){
       this.numberOfPremises.push(i);
     }
@@ -100,6 +141,7 @@ export class EshComponent {
   }
 
   addFieldsReplace(count: number){
+    this.numberOfReplace = [];
     for(let i = 1; i <= count; i++){
       this.numberOfReplace.push(i);
     }
@@ -117,7 +159,18 @@ export class EshComponent {
       eshResponsive: this.eshResponsive,
       eshBrandAndModel: this.eshBrandAndModel,
       eshSerialNumber: this.eshSerialNumber,
-      eshCostScore: this.eshCostScore
+      eshCostScore: this.eshCostScore,
+      eshPremiseType: this.filter_array(this.premiseTypeOfEshArray),
+      eshPremiseResponsive: this.filter_array(this.premiseEshResponsiveArray),
+      eshPremiseBrandAndModel: this.filter_array(this.premiseEshBrandAndModelArray),
+      eshPremiseSerialNumber: this.filter_array(this.premiseEshSerialNumArray),
+      eshPremiseSteps: this.filter_array(this.dependentFields),
+      eshReplaceLocOfesh: this.filter_array(this.replaceLocOfEshArray),
+      eshReplaceBrandOfEsh: this.filter_array(this.replaceBrandOfEshArray),
+      eshReplaceSerialNumber: this.filter_array(this.replaceSerialNumberEshArray),
+      eshReplaceTypeOfEsh: this.filter_array(this.replaceSTypeOfEshArray),
+      eshReplaceAutoChargeCtrl: this.filter_array(this.replaceAutomaticChargeCtrlEshArray),
+      eshReplaceKWRating: this.filter_array(this.replaceKwRatingEshArray)
     };
     //console.log(JSON.stringify(this.sharedObject.getSharedSelectedLeadObject()));
     this.sharedObject.setSharedEshObject(obj);
@@ -126,8 +179,36 @@ export class EshComponent {
     this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_eshFields", obj);
   }
 
-  saveEshArray(){
-    alert(this.premiseArray);
+  // saveEshArray(){
+  //   console.log("Type Of Esh Premise =>" + this.premiseTypeOfEshArray);
+  //   console.log("Responsive Esh Premise =>" + this.premiseEshResponsiveArray);
+  //   console.log("Brand And Model ESH Premise =>" + this.premiseEshBrandAndModelArray);
+  //   console.log("Serial Number ESH Premise =>" + this.premiseEshSerialNumArray);
+  //   console.log("Steps Premise =>" + this.dependentFields);
+  //   console.log("Location of Esh Replace =>" + this.replaceLocOfEshArray);
+  //   console.log("Brand Of Esh Replace =>" + this.replaceBrandOfEshArray);
+  //   console.log("Serial Number of Esh Replace =>" + this.replaceSerialNumberEshArray);
+  //   console.log("Type of Esh Replace =>" + this.replaceSTypeOfEshArray);
+  //   console.log("Automatic Charge Ctrl Replace =>" + this.replaceAutomaticChargeCtrlEshArray);
+  //   console.log("KW Rating Esh Replace =>" + this.replaceKwRatingEshArray);
+    
+  // }
+
+  filter_array(test_array){
+    var index = -1,
+    arr_length = test_array ? test_array.length : 0,
+    resIndex = -1,
+    result = [];
+
+    while (++index < arr_length) {
+      var value = test_array[index];
+
+      if (value) {
+          result[++resIndex] = value;
+      }
+      }
+
+      return result;
   }
 
 }

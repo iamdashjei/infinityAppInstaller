@@ -39,29 +39,29 @@
     </ion-item>
 
     
-    <ion-row *ngFor="let item of numberOfPremises;">
+    <ion-row *ngFor="let item of numberOfPremises; let i = index">
         
     <ion-item-divider>
-      ESH Premise ({{ item }})
+      ESH in the Premise ({{ item }})
     </ion-item-divider>
     <ion-item>
       <ion-label color="primary" stacked>Type of ESH</ion-label>
-      <ion-input [(ngModel)]="premiseTypeOfEshArray[item]"></ion-input>
+      <ion-input [(ngModel)]="premiseTypeOfEshArray[i]"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>ESH Responsive</ion-label>
-      <ion-input [(ngModel)]="premiseEshResponsiveArray[item]"></ion-input>
+      <ion-input [(ngModel)]="premiseEshResponsiveArray[i]"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>ESH Brand and Model</ion-label>
-      <ion-input [(ngModel)]="premiseEshBrandAndModelArray[item]"></ion-input>
+      <ion-input [(ngModel)]="premiseEshBrandAndModelArray[i]"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>ESH Serial Number</ion-label>
-      <ion-input [(ngModel)]="premiseEshSerialNumArray[item]"></ion-input>
+      <ion-input [(ngModel)]="premiseEshSerialNumArray[i]"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -70,44 +70,43 @@
           <ion-option value="Functional Text">Functional Text</ion-option>
           <ion-option value="Voltage Test">Voltage Test</ion-option>
           <ion-option value="Multimeter Test">Multimeter Test</ion-option>
-          <ion-option value="Type Of ESH">Type Of ESH</ion-option>
           <ion-option value="Other">Other</ion-option>
         </ion-select>
       </ion-item>
     </ion-row>
 
-    <ion-row *ngFor="let item2 of numberOfReplace;">
+    <ion-row *ngFor="let item2 of numberOfReplace; let i = index">
       <ion-item-divider>
-          ESH Replace ({{ item2 }})
+          ESH Being Replace ({{ item2 }})
       </ion-item-divider>    
     <ion-item>
       <ion-label color="primary" stacked>ESH Location</ion-label>
-      <ion-input [(ngModel)]="locOfEshLoop"></ion-input>
+      <ion-input [(ngModel)]="replaceLocOfEshArray[i]"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>ESH Brand and Model</ion-label>
-      <ion-input [(ngModel)]="brandOfEshLoop"></ion-input>
+      <ion-input [(ngModel)]="replaceBrandOfEshArray[i]"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>ESH Serial Number</ion-label>
-      <ion-input [(ngModel)]="eshSerialNumberRepLoop"></ion-input>
+      <ion-input [(ngModel)]="replaceSerialNumberEshArray[i]"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Type of ESH</ion-label>
-      <ion-input [(ngModel)]="typeOfEshRepLoop"></ion-input>
+      <ion-input [(ngModel)]="replaceSTypeOfEshArray[i]"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Automatic Charge Control</ion-label>
-      <ion-input [(ngModel)]="automaticChargeControlRepLoop"></ion-input>
+      <ion-input [(ngModel)]="replaceAutomaticChargeCtrlEshArray[i]"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>KW Rating</ion-label>
-      <ion-input [(ngModel)]="kwRatingRepLoop"></ion-input>
+      <ion-input [(ngModel)]="replaceKwRatingEshArray[i]"></ion-input>
     </ion-item>
 
     </ion-row>
@@ -117,16 +116,17 @@
     </ion-item-divider>
     <ion-item>
       <ion-label color="primary" stacked>Cost Score</ion-label>
-      <ion-input [(ngModel)]="eshCostScore"></ion-input>
+      <ion-input type="number" [(ngModel)]="eshCostScore"></ion-input>
     </ion-item>
     
-    <ion-item>
-        <button ion-button class="primary" (click)="saveEshObject()">Save</button>
-    </ion-item>
-
-    <ion-item>
+    <ion-buttons end>
+        <button ion-button  id="eshSave" (click)="saveEshObject()" icon-start>
+            <ion-icon name="document"></ion-icon>
+          Save</button>
+    </ion-buttons>
+    <!-- <ion-item>
         <button ion-button class="primary" (click)="saveEshArray()">Save Array</button>
-    </ion-item>
+    </ion-item> -->
 
 
 
