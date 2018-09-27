@@ -298,7 +298,7 @@ export class InstallerPage {
     if(this.sharedObject.getSharedMeasureToUpload() == 'esh'){
       
       this.savedEshObjects();
-      alert("Saved Lead Successfully!");
+      this.rest.presentToastSavelead();
     }
   }
 

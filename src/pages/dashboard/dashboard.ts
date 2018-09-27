@@ -33,6 +33,9 @@ export class DashboardPage {
   leadsInProgress: any;
   leadsCompleted: any;
   user_id: any;
+  isSubmitted: boolean = false;
+  listSubmitted: any = [];
+  
   
   constructor(public navCtrl: NavController,
               public menuCtrl: MenuController,
@@ -48,11 +51,13 @@ export class DashboardPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad DashboardPage');
     this.getLeadsAssigned();
+    this.isSubmittedLead();
   }
 
   ionViewWillEnter(){
     console.log("ENTERED VIEW");
     this.sharedObject.setSharedCampaignMeasure(null);
+
   }
 
   getLeadsAssigned(){
@@ -71,6 +76,8 @@ export class DashboardPage {
     });
   });
 
+  
+
   }
 
   openLeads(lead_slug, campaign_name, leadItem, leadCreatedDate, leadCustName){
@@ -84,4 +91,31 @@ export class DashboardPage {
     });
 
   }
+
+  isSubmittedLead(){
+    this.listSubmitted = [];
+    this.storage.forEach( (value, key, index) => {
+     
+      console.log("from the key", key);
+      this.listSubmitted.push(key);
+    });
+  }
+
+  isSubmit(lead_slug){
+    if(this.listSubmitted.indexOf(lead_slug + "_isSubmitted") === -1){
+      return true;
+    } else {
+      return false;
+    } 
+  }
+
+  isSubmit2(lead_slug){
+    if(this.listSubmitted.indexOf(lead_slug + "_isSubmitted") !== -1){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  
 }

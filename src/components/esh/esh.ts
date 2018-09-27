@@ -1,7 +1,7 @@
 import { Component, ViewChild, Renderer, Input} from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice/sharedobjectservice';
-
+import { RestProvider } from '../../providers/rest/rest';
 /**
  * Generated class for the EshComponent component.
  *
@@ -57,6 +57,7 @@ export class EshComponent {
 
   constructor(public renderer: Renderer,
               public storage: Storage,
+              public rest: RestProvider,
               public sharedObject: SharedobjectserviceProvider) {
     console.log('Hello EshComponent Component');
     sharedObject.setSharedMeasureToUpload("esh");
@@ -68,12 +69,11 @@ export class EshComponent {
     this.renderer.setElementStyle(this.eshFormContent.nativeElement, "webkitTransition", "max-height 10000ms, padding 500ms");
   }
 
-  // Toggle Form For ESH
-  toggleAccordionESH() {
-
+  ngAfterViewInit(){
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_eshFields").then((esh) => {
       if(esh != null){
         let data = esh;
+        this.sharedObject.setSharedEshObject(esh);
         this.numberOfPremises = [];
         this.numberOfReplace = [];
 
@@ -117,6 +117,10 @@ export class EshComponent {
         //console.log("Premise Type Esh => " + data.eshPremiseType);
       }
     });
+  }
+
+  // Toggle Form For ESH
+  toggleAccordionESH() {
 
     if(this.accordionExpanded){
       this.renderer.setElementStyle(this.eshFormContent.nativeElement, "max-height", "0px");
@@ -174,9 +178,10 @@ export class EshComponent {
     };
     //console.log(JSON.stringify(this.sharedObject.getSharedSelectedLeadObject()));
     this.sharedObject.setSharedEshObject(obj);
-    console.log("ESH OBJECT => " + JSON.stringify(obj));
+    //console.log("ESH OBJECT => " + JSON.stringify(obj));
 
     this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_eshFields", obj);
+    this.rest.presentToast();
   }
 
   // saveEshArray(){

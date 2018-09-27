@@ -12,6 +12,8 @@ import { SharedobjectserviceProvider } from '../sharedobjectservice/sharedobject
 
 import { DashboardPage } from '../../pages/dashboard/dashboard';
 
+import { ToastController } from 'ionic-angular';
+
 /*
   Generated class for the RestProvider provider.
 
@@ -36,6 +38,7 @@ export class RestProvider {
 
   constructor(public http: Http,
               private storage: Storage,
+              public toastCtrl: ToastController,
               public sharedObject: SharedobjectserviceProvider,
               public loadingCtrl: LoadingController) {
     console.log('Hello RestProvider Provider');
@@ -282,7 +285,8 @@ export class RestProvider {
           console.log('API Response: ', response.json());
           resolve(response.json());
           this.loading.dismiss();
-           alert("Successfully Submitted!");
+          this.presentToastSubmitlead();
+          this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_isSubmitted", "yes");
            //this.navCtrl.push(DashboardPage);
         })
         .catch((error) =>
@@ -292,6 +296,48 @@ export class RestProvider {
           reject(error.json());
         });
       });
+    }
+
+    presentToast() {
+      let toast = this.toastCtrl.create({
+        message: 'Saved Mainform Successfully!',
+        duration: 3000,
+        position: 'top'
+      });
+    
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+    
+      toast.present();
+    }
+
+    presentToastSavelead() {
+      let toast = this.toastCtrl.create({
+        message: 'Saved Lead Successfully!',
+        duration: 3000,
+        position: 'top'
+      });
+    
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+    
+      toast.present();
+    }
+
+    presentToastSubmitlead() {
+      let toast = this.toastCtrl.create({
+        message: 'Lead Submitted Successfully!',
+        duration: 3000,
+        position: 'top'
+      });
+    
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+    
+      toast.present();
     }
 
 

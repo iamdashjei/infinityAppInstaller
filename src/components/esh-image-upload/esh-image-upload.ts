@@ -57,9 +57,8 @@ export class EshImageUploadComponent {
 
   }
 
-  // Toggle Form For ESH
-  toggleAccordionESHImage() {
-
+  ngAfterViewInit(){
+    
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_PPES").then((PPES) => {
       PPES != null ? this.base64ImagePPES = PPES : this.base64ImagePPES = '';
       PPES != null ? this.progressPPES.percentage = 100 : this.progressPPES.percentage = 0;
@@ -87,6 +86,11 @@ export class EshImageUploadComponent {
       PICA != null ? this.progressPICAStatus = "Completed" : this.progressPICAStatus = "Not yet completed.";
       PICA != null ? this.colorPICA = "secondary" : this.colorPICA = "danger";
     });
+  }
+
+  // Toggle Form For ESH
+  toggleAccordionESHImage() {
+
 
     if(this.accordionExpanded){
       this.renderer.setElementStyle(this.eshFormContent.nativeElement, "max-height", "0px");
