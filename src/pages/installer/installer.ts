@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice/sharedobjectservice';
 import { RestProvider} from '../../providers/rest/rest';
 import { Storage } from '@ionic/storage';
+import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 /**
  * Generated class for the InstallerPage page.
  *
@@ -31,10 +32,19 @@ export class InstallerPage {
   signatureImage: any;
   signatureImage2: any;
   signatureImage3: any;
+  engSignImage: any;
+
+  @ViewChild(SignaturePad) public signaturePad : SignaturePad;
+  public signaturePadOptions : Object = {
+    'minWidth': 2,
+    'canvasWidth': 100,
+    'canvasHeight': 100
+  }
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public storage: Storage,
+              public toastCtrl: ToastController,
               public rest: RestProvider,
               public sharedObject: SharedobjectserviceProvider) {
     if(sharedObject.getSharedCampaignMeasure() == null){
@@ -71,6 +81,12 @@ export class InstallerPage {
       this.storage.set(this.lead_slug + "_additionalFields", this.sharedObject.getSharedSelectedLeadObject());
       this.storage.set("lead_slug", this.lead_slug);
     } 
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_EngSign").then((EngSign) => {
+      this.engSignImage = EngSign;
+    });
+
+    this.canvasResize();
   }
 
   // View Restriction for Forms. etc.
@@ -220,6 +236,12 @@ export class InstallerPage {
           this.signatureImage3 = declare3;
       
    });
+
+   this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + '_EngSign').then((EngSign) => {
+
+    this.engSignImage = EngSign;
+
+});
     
   }
 
@@ -310,7 +332,8 @@ export class InstallerPage {
       eshPICA: this.eshPICA,
       signatureImage: this.signatureImage,
       signatureImage2: this.signatureImage2,
-      signatureImage3: this.signatureImage3
+      signatureImage3: this.signatureImage3,
+      engSignImage: this.engSignImage
     };
 
     //console.log(JSON.stringify(data));
@@ -324,8 +347,38 @@ export class InstallerPage {
     });
 
   }
+  
+  canvasResize(){
+    let canvas = document.querySelector('canvas');
+    this.signaturePad.set('minWidth', 1);
+    this.signaturePad.set('canvasWidth', 800);
+    this.signaturePad.set('canvasHeight',200);
 
+  }
 
+  drawComplete(){
+    this.storage.set(this.sharedObject.getSharedSlugSelectedCM() +"_EngSign", this.signaturePad.toDataURL());
+    this.engSignImage = this.signaturePad.toDataURL();
+    this.presentToast();
+  }
+
+  drawClear(){
+    this.signaturePad.clear();
+  }
+
+  presentToast(){
+    let toast = this.toastCtrl.create({
+      message: 'Signature Saved Successfully!',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
+  }
 
 
 }

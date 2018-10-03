@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
@@ -22,6 +22,7 @@ export class MyApp {
 
   constructor(platform: Platform,
               statusBar: StatusBar,
+              public toastCtrl: ToastController,
               splashScreen: SplashScreen,
               public storage: Storage,
               public rest: RestProvider) {
@@ -44,6 +45,7 @@ export class MyApp {
 
     FCMPlugin.onNotification(function(data){
     if(data.wasTapped){
+      this.presentToastNotif();
       this.isLoggedIn();
       //Notification was received on device tray and tapped by the user.
     //  navCtrl.setRoot(DashboardPage);
@@ -90,6 +92,20 @@ export class MyApp {
       });
 
     });
+  }
+
+  presentToastNotif() {
+    let toast = this.toastCtrl.create({
+      message: 'You have New Lead assigned!',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
   }
 
 }

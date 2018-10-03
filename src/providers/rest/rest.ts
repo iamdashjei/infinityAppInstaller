@@ -302,7 +302,7 @@ export class RestProvider {
       let toast = this.toastCtrl.create({
         message: 'Saved Mainform Successfully!',
         duration: 3000,
-        position: 'top'
+        position: 'bottom'
       });
     
       toast.onDidDismiss(() => {
@@ -316,7 +316,7 @@ export class RestProvider {
       let toast = this.toastCtrl.create({
         message: 'Saved Lead Successfully!',
         duration: 3000,
-        position: 'top'
+        position: 'bottom'
       });
     
       toast.onDidDismiss(() => {
@@ -330,7 +330,7 @@ export class RestProvider {
       let toast = this.toastCtrl.create({
         message: 'Lead Submitted Successfully!',
         duration: 3000,
-        position: 'top'
+        position: 'bottom'
       });
     
       toast.onDidDismiss(() => {

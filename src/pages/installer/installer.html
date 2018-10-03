@@ -77,4 +77,22 @@
   <solid-wall title="Solid Wall Measures" *ngIf="isViewedSolidWall()">Solid Wall Measures</solid-wall>
   <solid-wall-image-upload title="Solid Wall Measures Image Upload" *ngIf="isViewedSolidWall()">Solid Wall Measures Image Upload</solid-wall-image-upload>
   <e-declaration-sign title="Declaration">Declaration</e-declaration-sign>
+  
+  <div *ngIf="engSignImage">
+  <ion-item-divider>Engineer Signature Preview:</ion-item-divider>
+  <img [src]="engSignImage" height="200px" width="800px"/>
+  </div>
+  <ion-item-divider>Engineer Signature:</ion-item-divider>
+  <signature-pad [options]="signaturePadOptions"  id="signatureCanvas"></signature-pad>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4>
+        <button ion-button full color="light" (click)="drawClear()">Clear</button>
+      </ion-col>
+      <ion-col col-4>
+        <button ion-button full color="secondary" (click)="drawComplete()">Done</button>
+      </ion-col>
+    
+    </ion-row>
+  </ion-grid>
 </ion-content>
