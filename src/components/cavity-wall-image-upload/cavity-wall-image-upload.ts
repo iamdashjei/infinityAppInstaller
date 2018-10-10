@@ -17,7 +17,7 @@ export class CavityWallImageUploadComponent {
 
   @ViewChild("cavwallImageForms") cavwallFormContent: any;
   @Input('title') title: string;
-
+ 
   icon: string = "arrow-forward";
   constructor(public renderer: Renderer,
               public storage: Storage,
