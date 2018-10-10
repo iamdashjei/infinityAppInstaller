@@ -65,9 +65,9 @@ export class DashboardPage {
     this.user_id = val;
     this.rest.fetchLeadAssigned(val).then((result) => {
 
-      this.leadsNew = result['New Leads'];
-      this.leadsInProgress = result['In Progress'];
-      this.leadsCompleted = result['Completed'];
+      this.leadsNew = result['New Leads Installer'];
+      this.leadsInProgress = result['In Progress Installer'];
+      this.leadsCompleted = result['Completed Installer'];
 
       console.log("All Leads: " +   JSON.stringify(this.leadsNew));
     }, (err) => {
@@ -115,6 +115,18 @@ export class DashboardPage {
     } else {
       return false;
     }
+  }
+
+  updateLeads(lead_slug, remarks){
+    this.rest.updateLeadsFromActionBtn(lead_slug, this.user_id, 'In Progress Installer', remarks).then((result) => {
+      console.log(result);
+      this.getLeadsAssigned();
+
+    }, (err) => {
+      console.log(err);
+
+    });
+
   }
 
   

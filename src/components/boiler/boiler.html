@@ -65,12 +65,12 @@
 
     <ion-item>
       <ion-label color="primary" stacked>Boiler Location (pre installation)</ion-label>
-      <ion-input clearInput type="text" [(ngModel)]="boilerFuelType"></ion-input>
+      <ion-input clearInput type="text" [(ngModel)]="preboilerFuelType"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Serial Number</ion-label>
-      <ion-input clearInput type="text" [(ngModel)]="boilerSerialNumber"></ion-input>
+      <ion-input clearInput type="text" [(ngModel)]="preboilerSerialNumber"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -164,28 +164,11 @@
       </ion-select>
     </ion-item>
 
-
-    <ion-item>
-      <ion-label color="primary" stacked>What is the condition of the existing boiler (when assessed against the expected condition of a boiler of that age)</ion-label>
-      <ion-select [(ngModel)]="boilerExistingBoiler">
-        <ion-option value="Poor">Poor</ion-option>
-        <ion-option value="Standard">Standard</ion-option>
-        <ion-option value="Good">Good</ion-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item>
-      <ion-label color="primary" stacked>What is the condition of the existing boiler (when assessed against the expected condition of a boiler of that age)</ion-label>
-      <ion-select [(ngModel)]="boilerExistingBoiler">
-        <ion-option value="Poor">Poor</ion-option>
-        <ion-option value="Standard">Standard</ion-option>
-        <ion-option value="Good">Good</ion-option>
-      </ion-select>
-    </ion-item>
+   
 
     <ion-item>
       <ion-label color="primary" stacked>What is the maximum cost of the boiler repair as identified in the Economic Repair Cost Comparison Tables?</ion-label>
-      <ion-input clearInput type="number" [(ngModel)]="boilerRepairOrReplace"></ion-input>
+      <ion-input clearInput type="number" [(ngModel)]="boilerRepairOrReplaceIdentified"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -200,6 +183,8 @@
       <ion-label color="primary" stacked>Cost Score</ion-label>
       <ion-input clearInput type="number" [(ngModel)]="boilerCostScore"></ion-input>
     </ion-item>
+
+    <button ion-button (click)="saveBoiler()"> Save Boiler Measures </button>
 
     <!-- PUT SIGNATURE PAGE HERE-->
 

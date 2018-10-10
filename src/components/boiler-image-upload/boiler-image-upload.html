@@ -12,32 +12,202 @@
   </ion-card-header>
 
   <ion-card-content #boilerImageForms>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div class="progress" style="width:300px">
+            <div class="progress-bar progress-bar-info progress-bar-striped"
+              role="progressbar" attr.aria-valuenow="{{progressGasCert.percentage}}"
+                aria-valuemin="0" aria-valuemax="100"
+                [ngStyle]="{width:progressGasCert.percentage+'%'}">
+                {{progressGasCert.percentage}}%
+              </div>
+          </div>
+        </ion-col>
+        <ion-col>
+         <ion-label color="{{ colorGasCert }}">{{ progressGasCertStatus }}</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label color="primary">GAS CERT</ion-label>
+        </ion-col>
 
-    <ion-item>
-        <ion-label color="primary" stacked>GAS CERT</ion-label>
-        <ion-input type="file" multiple></ion-input>
-    </ion-item>
+        <ion-col>
 
-    <ion-item>
-        <ion-label color="primary" stacked>BCOM</ion-label>
-        <ion-input type="file" multiple></ion-input>
-    </ion-item>
+          <button ion-button (click)="openGallery('Gas Cert')"> Choose File </button>
+          <button ion-button (click)="capture('Gas Cert')" > Take Photo</button>
+          <button ion-button (click)="uploadImage('Gas Cert')" *ngIf="GasCertImage.length"> Save Image </button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of GasCertImage">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
+       </ion-row>
 
-    <ion-item>
-        <ion-label color="primary" stacked>PIBI</ion-label>
-        <ion-input type="file" multiple></ion-input>
-    </ion-item>
+      <ion-row>
+        <ion-col>
+          <div class="progress" style="width:300px">
+            <div class="progress-bar progress-bar-info progress-bar-striped"
+              role="progressbar" attr.aria-valuenow="{{progressBCOM.percentage}}"
+                aria-valuemin="0" aria-valuemax="100"
+                [ngStyle]="{width:progressBCOM.percentage+'%'}">
+                {{progressBCOM.percentage}}%
+              </div>
+          </div>
+        </ion-col>
+        <ion-col>
+         <ion-label color="{{ colorBCOM }}">{{ progressBCOMStatus }}</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label color="primary">BCOM</ion-label>
+        </ion-col>
 
-    <ion-item>
-        <ion-label color="primary" stacked>PICS</ion-label>
-        <ion-input type="file" multiple></ion-input>
-    </ion-item>
+        <ion-col>
 
-    <ion-item>
-        <ion-label color="primary" stacked>PICA</ion-label>
-        <ion-input type="file" multiple></ion-input>
-    </ion-item>
+          <button ion-button (click)="openGallery('BCOM')"> Choose File </button>
+          <button ion-button (click)="capture('BCOM')" > Take Photo</button>
+          <button ion-button (click)="uploadImage('BCOM')" *ngIf="BCOMImage.length"> Save Image </button>
+          
 
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of BCOMImage">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
+       </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <div class="progress" style="width:300px">
+            <div class="progress-bar progress-bar-info progress-bar-striped"
+              role="progressbar" attr.aria-valuenow="{{progressPIBI.percentage}}"
+                aria-valuemin="0" aria-valuemax="100"
+                [ngStyle]="{width:progressPIBI.percentage+'%'}">
+                {{progressPIBI.percentage}}%
+              </div>
+          </div>
+        </ion-col>
+        <ion-col>
+         <ion-label color="{{ colorPIBI }}">{{ progressPIBIStatus }}</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label color="primary">PIBI</ion-label>
+        </ion-col>
+ 
+        <ion-col>
+ 
+          <button ion-button (click)="openGallery('PIBI')"> Choose File </button>
+          <button ion-button (click)="capture('PIBI')"> Take Photo </button>
+          <button ion-button (click)="uploadImage('PIBI')" *ngIf="PIBIImage.length"> Save Image </button>
+          
+          <!-- <ion-label color="primary"> <input type="file" (change)="selectFileSurveyor($event)"/></ion-label>
+ 
+          <button ion-button class="primary" [disabled]="!selectedFiles" (click)="uploadSurveyor()">Upload</button> -->
+ 
+        </ion-col>
+        
+      </ion-row>
+      <ion-row>
+       <ion-col>
+         <ion-slides>
+             <ion-slide *ngFor="let image of PIBIImage">
+                 <img src="{{image}}"/>
+             </ion-slide>
+         </ion-slides>
+       </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <div class="progress" style="width:300px">
+            <div class="progress-bar progress-bar-info progress-bar-striped"
+              role="progressbar" attr.aria-valuenow="{{progressPICS.percentage}}"
+                aria-valuemin="0" aria-valuemax="100"
+                [ngStyle]="{width:progressPICS.percentage+'%'}">
+                {{progressPICS.percentage}}%
+              </div>
+          </div>
+        </ion-col>
+        <ion-col>
+         <ion-label color="{{ colorPICS }}">{{ progressPICSStatus }}</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label color="primary">PICS</ion-label>
+        </ion-col>
+ 
+        <ion-col>
+ 
+          <button ion-button (click)="openGallery('PICS')"> Choose File </button>
+          <button ion-button (click)="capture('PICS')"> Take Photo </button>
+          <button ion-button (click)="uploadImage('PICS')" *ngIf="PICSImage.length"> Save Image </button>
+          
+          <!-- <ion-label color="primary"> <input type="file" (change)="selectFileSurveyor($event)"/></ion-label>
+ 
+          <button ion-button class="primary" [disabled]="!selectedFiles" (click)="uploadSurveyor()">Upload</button> -->
+ 
+        </ion-col>
+        
+      </ion-row>
+      <ion-row>
+       <ion-col>
+         <ion-slides>
+             <ion-slide *ngFor="let image of PICSImage">
+                 <img src="{{image}}"/>
+             </ion-slide>
+         </ion-slides>
+       </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <div class="progress" style="width:300px">
+            <div class="progress-bar progress-bar-info progress-bar-striped"
+              role="progressbar" attr.aria-valuenow="{{progressPICA.percentage}}"
+                aria-valuemin="0" aria-valuemax="100"
+                [ngStyle]="{width:progressPICA.percentage+'%'}">
+                {{progressPICA.percentage}}%
+              </div>
+          </div>
+        </ion-col>
+        <ion-col>
+         <ion-label color="{{ colorPICA }}">{{ progressPICAStatus }}</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label color="primary">PICA</ion-label>
+        </ion-col>
+ 
+        <ion-col>
+ 
+          <button ion-button (click)="openGallery('PICA')"> Choose File </button>
+          <button ion-button (click)="capture('PICA')"> Take Photo </button>
+          <button ion-button (click)="uploadImage('PICA')" *ngIf="PICAImage.length"> Save Image </button>
+          
+          <!-- <ion-label color="primary"> <input type="file" (change)="selectFileSurveyor($event)"/></ion-label>
+ 
+          <button ion-button class="primary" [disabled]="!selectedFiles" (click)="uploadSurveyor()">Upload</button> -->
+ 
+        </ion-col>
+        
+      </ion-row>
+      <ion-row>
+       <ion-col>
+         <ion-slides>
+             <ion-slide *ngFor="let image of PICAImage">
+                 <img src="{{image}}"/>
+             </ion-slide>
+         </ion-slides>
+       </ion-col>
+      </ion-row>
+    </ion-grid>
     <!-- PUT SIGNATURE PAGE HERE-->
 
   </ion-card-content>
