@@ -43,7 +43,7 @@ export class MyApp {
         this.token = token;
     });
 
-    FCMPlugin.onNotification(function(data){
+    FCMPlugin.onNotification((data) => {
     if(data.wasTapped){
       this.presentToastNotif();
       this.isLoggedIn();
